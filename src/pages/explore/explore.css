@@ -4,4 +4,5 @@
   column-gap: var(--md-space);
   row-gap: var(--xxl-space);
   padding: var(--md-space);
+  justify-items: center;
 }
