@@ -1,0 +1,27 @@
+.sidebar-list {
+  grid-area: sidebar;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sm-space);
+  padding: var(--md-space) 0;
+  margin: 0;
+  text-align: center;
+  box-shadow: var(--sidebar-shadow);
+}
+.sidebar-list .grid-30-70 {
+  text-decoration: none;
+  color: var(--text-color);
+  align-items: center;
+  padding: var(--md-space) 0;
+  gap: 0;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1000px) {
+  .sidebar-list {
+    position: fixed;
+    left: -100rem;
+  }
+}
