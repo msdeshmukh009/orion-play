@@ -1,5 +1,5 @@
 .video-card {
-  max-width: 20rem;
+  max-width: 25rem;
   position: relative;
 }
 .video-card-watch-later-btn {
@@ -13,9 +13,6 @@
   padding: 2px;
   color: var(--background-color);
   background-color: transparent;
-}
-.video-card-image-container {
-  height: 11.5rem;
 }
 .description-image-container {
   width: 2rem;
@@ -65,4 +62,9 @@
   gap: 0;
   align-items: center;
   margin: var(--sm-space) 0;
+}
+@media only screen and (max-width: 1000px) {
+  .video-card-option-list .grid-30-70 {
+    grid-template-columns: 30% 70%;
+  }
 }
