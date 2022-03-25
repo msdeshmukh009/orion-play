@@ -10,3 +10,19 @@
     "nav nav nav"
     "sidebar children-container children-container";
 }
+@media only screen and (max-width: 1000px) {
+  .main-container {
+    grid-template-areas:
+      "nav nav nav"
+      "children-container children-container children-container";
+  }
+}
+@media only screen and (max-width: 526px) {
+  .main-container {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "nav nav nav"
+      "children-container children-container children-container";
+  }
+}
