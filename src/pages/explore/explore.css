@@ -1,0 +1,7 @@
+.video-listing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  column-gap: var(--md-space);
+  row-gap: var(--xxl-space);
+  padding: var(--md-space);
+}
