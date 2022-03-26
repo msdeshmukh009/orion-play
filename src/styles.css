@@ -1,0 +1,11 @@
+.display-none {
+  display: none;
+}
+.display-block {
+  display: block;
+}
+@media only screen and (max-width: 650px) {
+  html {
+    font-size: 80%;
+  }
+}

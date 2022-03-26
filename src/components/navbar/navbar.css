@@ -1,0 +1,50 @@
+/***nav-bar***/
+.nav {
+  box-shadow: var(--nav-bar-shadow);
+  grid-area: nav;
+  z-index: 1005;
+  max-width: 1800px;
+  margin: auto;
+  padding: 0 var(--sm-space);
+}
+.nav-header {
+  width: 12.5rem;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.nav-heading {
+  font-family: "ultraregular", sans-serif;
+
+  font-size: 2rem;
+}
+.user-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*******/
+
+.burger-menu {
+  display: none;
+}
+.burger-menu .btn {
+  box-shadow: none;
+}
+.display-none {
+  display: none;
+}
+
+/*** media-query ***/
+@media only screen and (max-width: 1000px) {
+  .nav-list-web-item {
+    display: none;
+  }
+  .burger-menu {
+    display: block;
+  }
+}

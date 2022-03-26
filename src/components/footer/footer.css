@@ -1,0 +1,18 @@
+.footer {
+  background-color: var(--secondary-color);
+  padding: var(--xl-space);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-list {
+  column-gap: var(--xl-space);
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+.footer-links {
+  text-decoration: none;
+  color: var(--btn-dark-color);
+}

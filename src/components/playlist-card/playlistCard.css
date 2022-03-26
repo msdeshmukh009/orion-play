@@ -1,0 +1,16 @@
+.playlist-card {
+  max-width: 30rem;
+  position: relative;
+}
+.playlist-card-overlay-container {
+  position: absolute;
+  min-width: 10rem;
+  height: 10rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--background-color);
+  top: 0;
+  right: 0;
+}
+.playlist-card-img-container .responsive-img {
+  height: 10rem;
+}
