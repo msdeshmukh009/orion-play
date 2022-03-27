@@ -1,0 +1,15 @@
+/*** form-container ***/
+.form-container {
+  padding: var(--xl-space);
+}
+.form-grp {
+  position: relative;
+}
+.form-text {
+  margin-top: var(--sm-space);
+}
+.option-helper-txt {
+  position: absolute;
+  top: 20px;
+}
+/*******/
