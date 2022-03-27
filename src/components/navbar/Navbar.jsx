@@ -1,5 +1,7 @@
 import "./navbar.css";
-const Navbar = ({ navAside, setNavAside }) => {
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
   return (
     <nav className="nav">
       <header className="nav-header flex-total-center">
@@ -28,9 +30,9 @@ const Navbar = ({ navAside, setNavAside }) => {
         </li>
 
         <li className="nav-list-web-item">
-          <a href="/" className="anchor-tag-badge-container user-icon">
+          <Link to="/signin" className="anchor-tag-badge-container user-icon">
             <i className="fas fa-user "></i> <span className="text-xs">Login</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

@@ -1,0 +1,15 @@
+.playlist-container {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  gap: var(--lg-space);
+  padding: var(--md-space);
+  flex-wrap: wrap;
+}
+.playlist-description {
+  flex: 1 0 150px;
+}
+.playlist-video-items {
+  flex: 1 0 320px;
+  gap: var(--md-space);
+}

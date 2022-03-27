@@ -10,6 +10,11 @@
     "nav nav nav"
     "sidebar children-container children-container";
 }
+.main-container-secondary {
+  grid-template-areas:
+    "nav nav nav"
+    "children-container children-container children-container";
+}
 @media only screen and (max-width: 1000px) {
   .main-container {
     grid-template-areas:
