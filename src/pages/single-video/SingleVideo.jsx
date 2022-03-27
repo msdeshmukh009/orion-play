@@ -1,22 +1,32 @@
 import "./singleVideo.css";
+import { useParams } from "react-router-dom";
+import { useVideos } from "../../context";
 
 const SingleVideo = () => {
+  const { videoId } = useParams();
+  const {
+    videoState: { videos },
+  } = useVideos();
+
+  const video = videos.find(eachVideo => eachVideo._id === videoId);
+
   return (
     <main className="video-container grid-70-30">
       <section className="video-section">
         <iframe
           className="video-iframe"
           width="560"
-          height="350"
-          src="https://www.youtube.com/embed/1L2hrG-7i2Y"
+          height="450"
+          src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
+          loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
         ></iframe>
 
         <div className="video-description">
-          <h3>Time… a programmer's worst enemy // The Code Report</h3>
+          <h3>{video?.title}</h3>
 
           <div className="video-cta">
             <button className="video-cta-buttons">
@@ -36,24 +46,20 @@ const SingleVideo = () => {
             <div className="creator-img">
               <img
                 className="responsive-img rounded-img"
-                src="https://yt3.ggpht.com/ytc/AKedOLTcIl6kKt3lEPJEySUf_hpHiKDKiFeo9eWPReLysQ=s88-c-k-c0x00ffffff-no-rj"
-                alt="fireship"
+                src={video?.creatorImg}
+                alt={video?.creator}
               />
-              <span>Fireship</span>
+              <span>{video?.creator}</span>
             </div>
             <article>
-              <p>
-                Keeping track of time is complicated for programmers due to leap seconds, timezones,
-                and the weirdly designed Gregorian calendar. A new bill is going through congress to
-                make daylight savings time permanent - here's what that could mean for developers.
-              </p>
+              <p>{video?.description}</p>
             </article>
           </div>
         </div>
       </section>
 
       <section className="notes-section flex-column">
-        <h2>Notes</h2>
+        <h2 className="text-center">Notes</h2>
         <form className="notes-form">
           <div className="input-grp">
             <input className="form-field" type="text" required />
@@ -63,6 +69,7 @@ const SingleVideo = () => {
           </div>
           <button className="btn btn-primary">Save note</button>
         </form>
+
         <div className="notes-card flex-column">
           <div className="card text-card">
             <h3>This is a Text card</h3>

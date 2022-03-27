@@ -1,7 +1,18 @@
 .video-container {
-  width: 80%;
+  width: 90%;
   margin: var(--lg-space) auto;
   padding: var(--md-space);
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: var(--card-shadow);
+  border-radius: 4.8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(206, 210, 211);
+  border-radius: 4.8px;
 }
 .video-iframe {
   width: 100%;
@@ -12,7 +23,7 @@
 .notes-section {
   gap: var(--md-space);
   padding: var(--sm-space);
-  height: 350px;
+  height: 450px;
   overflow: scroll;
   overflow-x: hidden;
 }
