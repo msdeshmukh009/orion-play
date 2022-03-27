@@ -2,18 +2,6 @@
   max-width: 25rem;
   position: relative;
 }
-.video-card-watch-later-btn {
-  position: absolute;
-  right: 2px;
-  top: 2px;
-  width: 30px;
-  height: 30px;
-  border-radius: 0;
-  padding: 2px;
-  padding: 2px;
-  color: var(--background-color);
-  background-color: transparent;
-}
 .description-image-container {
   width: 2rem;
   flex-shrink: 0;
@@ -23,6 +11,8 @@
   overflow: hidden;
 }
 .text-description {
+  text-decoration: none;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
 }
@@ -52,10 +42,6 @@
   box-shadow: var(--card-hover-shadow);
   padding: var(--sm-space);
   width: 12rem;
-}
-.video-card-option-list-sibling {
-  position: absolute;
-  background-color: red;
 }
 .video-card-option-list .grid-30-70 {
   cursor: pointer;

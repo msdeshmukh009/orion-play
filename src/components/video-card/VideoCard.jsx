@@ -1,54 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./videoCard.css";
 
-const VideoCard = ({ thumbnail, title, creatorName, creatorImage }) => {
+const VideoCard = ({ video }) => {
+  const { _id, title, creator, creatorImg } = video;
   const getVideoTitleTrimmedToEightyChar = title => {
     if (title.length < 80) {
       return title;
     }
     return title.substr(0, 78) + "..";
   };
-  const [showWatchLater, setShowLaterButton] = useState(false);
+
   const [showThreeDotMenu, setShowThreeDotMenu] = useState(false);
 
   return (
-    <div
-      className="video-card"
-      onMouseOver={() => setShowLaterButton(true)}
-      onMouseLeave={() => setShowLaterButton(false)}
-    >
-      <button
-        className={`video-card-watch-later-btn btn ${
-          showWatchLater ? "display-block" : "display-none"
-        }`}
-      >
-        <i className="far fa-clock"></i>
-      </button>
-
-      <div className="video-card-image-container">
+    <div className="video-card">
+      <Link to={`/explore/${_id}`} className="video-card-image-container">
         <img
           className="responsive-img"
-          src="https://i.ytimg.com/vi/iMVgvkVJuDI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBvU99zlZVetW12JDJFVPTRzhKlAg"
-          alt="thumbnail"
+          src={`https://i.ytimg.com/vi/${_id}/hq720.jpg`}
+          alt={title}
         />
-      </div>
+      </Link>
 
       <div className="video-card-description-container">
         <div className="description-image-container">
-          <img
-            className="responsive-img rounded-img"
-            src="https://yt3.ggpht.com/ytc/AKedOLTcIl6kKt3lEPJEySUf_hpHiKDKiFeo9eWPReLysQ=s68-c-k-c0x00ffffff-no-rj"
-            alt=""
-          />
+          <img className="responsive-img rounded-img" src={creatorImg} alt={creator} />
         </div>
 
-        <div className="text-description">
-          <span className="description-heading text-semibold">
-            {getVideoTitleTrimmedToEightyChar(
-              "Time… a programmer's worst enemy // The Code Report"
-            )}
-          </span>
-          <span>Fireship</span>
+        <div>
+          <Link to={`/explore/${_id}`} className="text-description">
+            <span className="description-heading text-semibold">
+              {getVideoTitleTrimmedToEightyChar(title)}
+            </span>
+            <span className="text-xs text-semibold text-gray">{creator}</span>
+          </Link>
         </div>
 
         <div className="three-don-menu-container">
