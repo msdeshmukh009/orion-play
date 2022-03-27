@@ -1,0 +1,10 @@
+.stacked-video-item {
+  display: flex;
+  align-items: flex-start;
+  column-gap: var(--lg-space);
+  box-shadow: var(--card-hover-shadow);
+  padding: var(--md-space);
+}
+.video-img-container {
+  flex: 1 1 200px;
+}
