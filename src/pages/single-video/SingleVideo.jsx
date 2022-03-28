@@ -17,7 +17,9 @@ const SingleVideo = () => {
   } = useLikes();
 
   const {
-    authState: { token },
+    authState: {
+      userDetails: { token },
+    },
   } = useAuth();
 
   const navigate = useNavigate();
