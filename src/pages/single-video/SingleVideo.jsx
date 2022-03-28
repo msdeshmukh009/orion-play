@@ -1,6 +1,7 @@
-import "./singleVideo.css";
 import { useParams } from "react-router-dom";
 import { useVideos } from "../../context";
+import { embedLink } from "../../utils";
+import "./singleVideo.css";
 
 const SingleVideo = () => {
   const { videoId } = useParams();
@@ -17,7 +18,7 @@ const SingleVideo = () => {
           className="video-iframe"
           width="560"
           height="450"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={embedLink(videoId)}
           title="YouTube video player"
           frameBorder="0"
           loading="lazy"
