@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { thumbnailLink } from "../../utils";
+
 import "./videoCard.css";
 
 const VideoCard = ({ video }) => {

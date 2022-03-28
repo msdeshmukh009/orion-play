@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useVideos } from "../../context";
 import { embedLink } from "../../utils";
 import "./singleVideo.css";
+
 const SingleVideo = () => {
   const { videoId } = useParams();
   const {
