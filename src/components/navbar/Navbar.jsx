@@ -1,7 +1,14 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context";
 
 const Navbar = () => {
+  const {
+    authState: {
+      userDetails: { token },
+    },
+    logout,
+  } = useAuth();
   return (
     <nav className="nav">
       <header className="nav-header flex-total-center">
@@ -29,11 +36,19 @@ const Navbar = () => {
           </a>
         </li>
 
-        <li className="nav-list-web-item">
-          <Link to="/signin" className="anchor-tag-badge-container user-icon">
-            <i className="fas fa-user "></i> <span className="text-xs">Login</span>
-          </Link>
-        </li>
+        {token ? (
+          <li className="nav-list-web-item">
+            <button className="btn btn-outline" onClick={() => logout()}>
+              <i className="fas fa-sign-out"></i>
+            </button>
+          </li>
+        ) : (
+          <li className="nav-list-web-item">
+            <Link to="/signin" className="anchor-tag-badge-container user-icon">
+              <i className="fas fa-user "></i> <span className="text-xs">Login</span>
+            </Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

@@ -23,7 +23,7 @@ const Sidebar = () => {
         </Link>
       </li>
       <li>
-        <Link className="grid-30-70" to="/">
+        <Link className="grid-30-70" to="/liked">
           <i className="fas fa-thumbs-up"></i>
           <span className="text-left">Liked Videos</span>
         </Link>
