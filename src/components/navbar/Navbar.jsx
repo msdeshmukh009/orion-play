@@ -31,9 +31,9 @@ const Navbar = () => {
 
       <ul className="inline-style-list no-style-list nav-list flex-total-center ">
         <li className="nav-list-web-item">
-          <a className="link-btn" href="/">
+          <Link className="link-btn" to="/">
             Explore
-          </a>
+          </Link>
         </li>
 
         {token ? (
