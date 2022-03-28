@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { thumbnailLink } from "../../utils";
 import "./videoCard.css";
 
 const VideoCard = ({ video }) => {
@@ -16,11 +17,7 @@ const VideoCard = ({ video }) => {
   return (
     <div className="video-card">
       <Link to={`/explore/${_id}`} className="video-card-image-container">
-        <img
-          className="responsive-img"
-          src={`https://i.ytimg.com/vi/${_id}/hq720.jpg`}
-          alt={title}
-        />
+        <img className="responsive-img" src={thumbnailLink(_id)} alt={title} />
       </Link>
 
       <div className="video-card-description-container">
