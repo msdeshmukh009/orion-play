@@ -13,3 +13,13 @@
   flex: 1 0 320px;
   gap: var(--md-space);
 }
+.playlist-container-secondary {
+  min-height: calc(100vh - 200px);
+  width: 100%;
+  gap: var(--md-space);
+}
+@media only screen and (max-width: 430px) {
+  .playlist-container {
+    width: 100%;
+  }
+}

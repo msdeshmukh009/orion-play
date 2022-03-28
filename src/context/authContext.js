@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { authReducer } from "../reducers";
 import { loginService, signupService } from "../services";
 import { authActions } from "../reducers/actionTypes";
+import toast from "react-hot-toast";
 
 const { INITIALIZE, LOGIN_USER, LOGOUT_USER, SET_ERROR } = authActions;
 
@@ -28,7 +29,7 @@ const AuthProvider = ({ children }) => {
       authDispatch({ type: INITIALIZE });
 
       const res = await loginService(userInput);
-      console.log(res);
+
       if (res.status === 200) {
         const {
           foundUser: { firstName },
@@ -42,6 +43,8 @@ const AuthProvider = ({ children }) => {
           payload: { userName: firstName, token: encodedToken },
         });
 
+        toast.success(`Hi!, ${firstName}`, { icon: "👋" });
+
         navigate(from, { replace: true });
       }
     } catch (err) {
@@ -50,14 +53,17 @@ const AuthProvider = ({ children }) => {
   };
 
   const signup = async userInput => {
+    console.log(userInput);
     try {
       authDispatch({ type: INITIALIZE });
 
       const res = await signupService(userInput);
 
       if (res.status === 201) {
-        const { firstName } = res.data.createdUser;
-        const { encodedToken } = res.data;
+        const {
+          createdUser: { firstName },
+          encodedToken,
+        } = res.data;
 
         localStorage.setItem("jwt", JSON.stringify({ userName: firstName, token: encodedToken }));
 
@@ -65,6 +71,8 @@ const AuthProvider = ({ children }) => {
           type: LOGIN_USER,
           payload: { userName: firstName, token: encodedToken },
         });
+
+        toast.success(`Hi!, ${firstName}`, { icon: "👋" });
 
         navigate("/");
       }

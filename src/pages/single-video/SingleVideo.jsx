@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useVideos } from "../../context";
+import { useLikes, useVideos } from "../../context";
 import { embedLink } from "../../utils";
 import "./singleVideo.css";
 
@@ -9,8 +9,14 @@ const SingleVideo = () => {
     videoState: { videos },
   } = useVideos();
 
-  const video = videos.find(eachVideo => eachVideo._id === videoId);
+  const {
+    likesState: { likedList },
+    addToLike,
+    removeFromLike,
+  } = useLikes();
 
+  const video = videos.find(eachVideo => eachVideo._id === videoId);
+  const isLiked = likedList.find(eachVideo => eachVideo._id === videoId);
   return (
     <main className="video-container grid-70-30">
       <section className="video-section">
@@ -30,8 +36,14 @@ const SingleVideo = () => {
           <h3>{video?.title}</h3>
 
           <div className="video-cta">
-            <button className="video-cta-buttons">
-              <i className="fas fa-thumbs-up"></i>
+            <button
+              className="video-cta-buttons"
+              onClick={() => {
+                console.log(isLiked, "SINGLE_VIDEO");
+                isLiked ? removeFromLike(videoId) : addToLike(video);
+              }}
+            >
+              <i className={`fas fa-thumbs-up ${isLiked ? "text-primary-color" : ""}`}></i>
             </button>
 
             <button className="video-cta-buttons">

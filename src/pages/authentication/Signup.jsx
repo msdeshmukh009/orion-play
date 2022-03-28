@@ -33,11 +33,11 @@ const Signup = () => {
   const formSubmitHandler = e => {
     e.preventDefault();
 
-    const { name, lastName, email, password } = userInput;
+    const { name: firstName, lastName, email, password } = userInput;
 
     setSubmitted(true);
     if (!(Object.values(formErrors).length > 0)) {
-      signup({ name, lastName, email, password });
+      signup({ firstName, lastName, email, password });
       setFormErrors({});
     }
   };
@@ -50,7 +50,6 @@ const Signup = () => {
         <OverlayContainer display={loading}>
           <Loading />
         </OverlayContainer>
-
         {error && <p className="text-danger text-center">{error}</p>}
         <Input
           type="text"
