@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useLikes, useVideos } from "../../context";
+import { useAuth, useLikes, useVideos } from "../../context";
+import { useNavigate } from "react-router-dom";
 import { embedLink } from "../../utils";
 import "./singleVideo.css";
 
@@ -14,6 +15,12 @@ const SingleVideo = () => {
     addToLike,
     removeFromLike,
   } = useLikes();
+
+  const {
+    authState: { token },
+  } = useAuth();
+
+  const navigate = useNavigate();
 
   const video = videos.find(eachVideo => eachVideo._id === videoId);
   const isLiked = likedList.find(eachVideo => eachVideo._id === videoId);
@@ -38,10 +45,9 @@ const SingleVideo = () => {
           <div className="video-cta">
             <button
               className="video-cta-buttons"
-              onClick={() => {
-                console.log(isLiked, "SINGLE_VIDEO");
-                isLiked ? removeFromLike(videoId) : addToLike(video);
-              }}
+              onClick={() =>
+                token ? (isLiked ? removeFromLike(videoId) : addToLike(video)) : navigate("/signin")
+              }
             >
               <i className={`fas fa-thumbs-up ${isLiked ? "text-primary-color" : ""}`}></i>
             </button>
