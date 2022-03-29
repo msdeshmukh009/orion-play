@@ -1,9 +1,15 @@
 /***nav-bar***/
-.nav {
+.nav-wrapper {
+  width: 100%;
   box-shadow: var(--nav-bar-shadow);
   grid-area: nav;
   z-index: 1005;
-  max-width: 1800px;
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+}
+.nav {
+  max-width: 2000px;
   margin: auto;
   padding: 0 var(--sm-space);
 }

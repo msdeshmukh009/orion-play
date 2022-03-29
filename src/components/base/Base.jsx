@@ -2,7 +2,7 @@ import { Footer } from "../footer/Footer";
 import { Navbar } from "../navbar/Navbar";
 import { Sidebar } from "../sidebar/Sidebar";
 import { useLocation } from "react-router-dom";
-
+import { Toaster } from "react-hot-toast";
 import "./base.css";
 
 const Base = ({ children }) => {
@@ -10,6 +10,7 @@ const Base = ({ children }) => {
   const sidebarRestrictedRoutes = ["/signin", "/signup"];
   return (
     <>
+      <Toaster />
       <Navbar />
       <div
         className={
