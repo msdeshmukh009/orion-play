@@ -7,7 +7,7 @@ const likesReducer = (state, action) => {
     case INITIALIZE:
       return { ...state, loading: true, error: "" };
 
-    case "SET_LIKEDLIST":
+    case SET_LIKEDLIST:
       return { ...state, likedList: action.payload, loading: false };
 
     case SET_ERROR:

@@ -14,6 +14,8 @@ const Signin = () => {
     password: "",
   });
 
+  const guestUser = { email: "adarshbalika@gmail.com", password: "adarshBalika123" };
+
   const {
     authState: { loading, error },
     login,
@@ -40,11 +42,8 @@ const Signin = () => {
   const loginWithGuest = e => {
     e.preventDefault();
     setSubmitted(true);
-    setUserInput({
-      email: "adarshbalika@gmail.com",
-      password: "adarshBalika123",
-    });
-    login({ email: "adarshbalika@gmail.com", password: "adarshBalika123" }, from);
+    setUserInput(guestUser);
+    login(guestUser, from);
   };
 
   useEffect(() => {

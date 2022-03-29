@@ -7,12 +7,8 @@ const StackedVideoItem = ({ video }) => {
 
   const { removeFromLike } = useLikes();
 
-  const getVideoTitleTrimmedToEightyChar = title => {
-    if (title.length < 40) {
-      return title;
-    }
-    return title.substr(0, 38) + "..";
-  };
+  const getVideoTitleTrimmedToEightyChar = title =>
+    title.length < 50 ? title : title.substr(0, 48) + "..";
 
   return (
     <div className="stacked-video-item">
