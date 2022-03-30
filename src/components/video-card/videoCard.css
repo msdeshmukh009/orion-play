@@ -7,7 +7,9 @@
   flex-shrink: 0;
 }
 .description-heading {
-  height: 3rem;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
   overflow: hidden;
 }
 .text-description {
@@ -42,6 +44,9 @@
   box-shadow: var(--card-hover-shadow);
   padding: var(--sm-space);
   width: 12rem;
+}
+.video-card-option-list .grid-30-70:hover {
+  color: var(--primary-color);
 }
 .video-card-option-list .grid-30-70 {
   cursor: pointer;

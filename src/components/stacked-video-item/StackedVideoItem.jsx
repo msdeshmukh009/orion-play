@@ -1,23 +1,25 @@
-import { useLikes } from "../../context";
+import { Link } from "react-router-dom";
 import { thumbnailLink } from "../../utils";
 import "./stackedVideoItem.css";
 
-const StackedVideoItem = ({ video }) => {
+const StackedVideoItem = ({ video, removeFunction, playlistId }) => {
   const { _id, title } = video;
-
-  const { removeFromLike } = useLikes();
-
-  const getVideoTitleTrimmedToEightyChar = title =>
-    title.length < 50 ? title : title.substr(0, 48) + "..";
 
   return (
     <div className="stacked-video-item">
-      <div className="video-img-container">
+      <Link to={`/explore/${video._id}`} className="video-img-container">
         <img className="responsive-img" src={thumbnailLink(_id)} alt="" />
-      </div>
-      <div className="video-description">{getVideoTitleTrimmedToEightyChar(title)}</div>
+      </Link>
+
+      <Link to={`/explore/${video._id}`} className="video-description">
+        {title}
+      </Link>
+
       <div className="video-cta">
-        <button className="btn btn-outline" onClick={() => removeFromLike(_id)}>
+        <button
+          className="btn btn-outline"
+          onClick={() => (playlistId ? removeFunction(playlistId, _id) : removeFunction(_id))}
+        >
           <i className="fas fa-trash"></i>
         </button>
       </div>

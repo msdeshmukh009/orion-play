@@ -6,3 +6,25 @@
   row-gap: var(--xl-space);
   padding: var(--md-space);
 }
+.playlist-listing-container-secondary {
+  height: calc(100vh - 200px);
+  gap: var(--md-space);
+}
+.playlist-link {
+  text-decoration: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.form-card {
+  min-width: 17rem;
+  min-height: 12rem;
+  max-width: 30rem;
+  border: 2px solid var(--secondary-color);
+  cursor: pointer;
+}
+.add-new-playlist-container:hover {
+  color: var(--primary-color);
+}
+.playlist-form .flex-total-center {
+  gap: var(--md-space);
+}
