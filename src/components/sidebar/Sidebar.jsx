@@ -1,45 +1,57 @@
-import { Link } from "react-router-dom";
 import "./sidebar.css";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  const activeClass = isActive => {
+    console.log(isActive);
+  };
   return (
     <ul className="no-style-list sidebar-list">
-      <li>
-        <Link className="grid-30-70" to="/">
+      {/* <li>
+        <NavLink className="grid-30-70" to="/">
           <i className="fas fa-home"></i>
           <span className="text-left">Home</span>
-        </Link>
-      </li>
+        </NavLink>
+      </li> */}
       <li>
-        <Link className="grid-30-70" to="/">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
+        >
           <i className="fas fa-compass"></i>
           <span className="text-left">Explore</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="grid-30-70" to="/playlist">
+        <NavLink
+          to="/playlist"
+          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
+        >
           <i className="fas fa-folder-plus"></i>
           <span className="text-left">Playlists</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="grid-30-70" to="/liked">
+        <NavLink
+          to="/liked"
+          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
+        >
           <i className="fas fa-thumbs-up"></i>
           <span className="text-left">Liked Videos</span>
-        </Link>
+        </NavLink>
       </li>
-      <li>
-        <Link className="grid-30-70" to="/">
+      {/* <li>
+        <NavLink className="grid-30-70" to="/">
           <i className="fas fa-clock"></i>
           <span className="text-left">Watch later</span>
-        </Link>
+        </NavLink>
       </li>
       <li>
-        <Link className="grid-30-70" to="/">
+        <NavLink className="grid-30-70" to="/">
           <i className="fas fa-history"></i>
           <span className="text-left">History</span>
-        </Link>
-      </li>
+        </NavLink>
+      </li> */}
     </ul>
   );
 };
