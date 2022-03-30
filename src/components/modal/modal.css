@@ -1,0 +1,41 @@
+.modal-background {
+  z-index: 1500;
+}
+.list-overflow {
+  padding: 0 var(--md-space);
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.dialog-content-secondary {
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.list-container {
+  height: 8rem;
+}
+.dialog-box {
+  background-color: var(--background-color);
+}
+.playlist-form {
+  gap: var(--md-space);
+}
+.playlist-form .input-grp {
+  margin: var(--md-space) 0;
+}
+.dialog-list .loader {
+  width: 2rem;
+}
+.dialog-list .loading-container {
+  min-height: 8rem;
+}
+.dialog-list .checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--md-space);
+}
+.checkbox {
+  cursor: pointer;
+}
