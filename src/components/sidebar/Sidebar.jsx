@@ -37,13 +37,16 @@ const Sidebar = () => {
           <span className="text-left">Liked Videos</span>
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink className="grid-30-70" to="/">
+      <li>
+        <NavLink
+          to="/watch-later"
+          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
+        >
           <i className="fas fa-clock"></i>
           <span className="text-left">Watch later</span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink className="grid-30-70" to="/">
           <i className="fas fa-history"></i>
           <span className="text-left">History</span>

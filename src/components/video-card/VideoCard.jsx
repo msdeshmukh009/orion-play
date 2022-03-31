@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useWatchLaterVideos } from "../../context";
 import { thumbnailLink } from "../../utils";
 import { Modal } from "../modal/Modal";
 import toast from "react-hot-toast";
@@ -16,6 +16,34 @@ const VideoCard = ({ video }) => {
       userDetails: { token },
     },
   } = useAuth();
+
+  const {
+    watchLaterState: { watchLaterVideos },
+    addToWatchLater,
+    removeFromWatchLater,
+  } = useWatchLaterVideos();
+
+  const isPresentInWatchLater = watchLaterVideos.find(eachVideo => eachVideo._id === video._id);
+
+  const handleWatchLater = () => {
+    setShowThreeDotMenu(prevState => !prevState);
+    if (token) {
+      !isPresentInWatchLater ? addToWatchLater(video) : removeFromWatchLater(video._id);
+    } else {
+      toast.error("Please login continue");
+      navigate("/signin");
+    }
+  };
+
+  const handleSaveToPlaylist = () => {
+    setShowThreeDotMenu(prevState => !prevState);
+    if (token) {
+      setShowModal(true);
+    } else {
+      toast.error("Please login continue");
+      navigate("/signin");
+    }
+  };
 
   return (
     <>
@@ -47,22 +75,16 @@ const VideoCard = ({ video }) => {
 
             {showThreeDotMenu && (
               <ul className="no-style-list video-card-option-list">
-                <li className="grid-30-70">
-                  <i className="text-center fas fa-clock"></i>
-                  <span className="text-sm">Watch later</span>
-                </li>
                 <li
-                  className="grid-30-70"
-                  onClick={() => {
-                    setShowThreeDotMenu(prevState => !prevState);
-                    if (token) {
-                      setShowModal(true);
-                    } else {
-                      toast.error("Please login continue");
-                      navigate("/signin");
-                    }
-                  }}
+                  className={`grid-30-70 ${isPresentInWatchLater ? "text-danger" : ""}`}
+                  onClick={handleWatchLater}
                 >
+                  <i
+                    className={`text-center fas fa-${isPresentInWatchLater ? "trash" : "clock"}`}
+                  ></i>
+                  <span className="text-md">Watch later</span>
+                </li>
+                <li className="grid-30-70" onClick={handleSaveToPlaylist}>
                   <i className="text-center fas fa-folder-plus"></i>
                   <span className="text-sm">Save to playlist</span>
                 </li>

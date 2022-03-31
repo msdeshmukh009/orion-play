@@ -7,6 +7,7 @@ import {
   Signup,
   LikedVideos,
   SinglePlaylist,
+  WatchLater,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import Mockman from "mockman-js";
@@ -23,6 +24,7 @@ const NavigationRoutes = () => {
       <Route path="/playlist/:playlistId" element={<SinglePlaylist />} />
       <Route path="/liked" element={<PrivateRoute element={LikedVideos} />} />
       <Route path="/playlist" element={<PrivateRoute element={PlaylistListing} />} />
+      <Route path="/watch-later" element={<PrivateRoute element={WatchLater} />} />
       {!token ? (
         <>
           <Route path="/signin" element={<Signin />} />

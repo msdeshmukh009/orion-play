@@ -4,3 +4,4 @@ export { SinglePlaylist } from "./single-playlist/SinglePlaylist";
 export { SingleVideo } from "./single-video/SingleVideo";
 export { Signin, Signup } from "./authentication";
 export { LikedVideos } from "./liked-videos/LikedVideos";
+export { WatchLater } from "./watch-later/WatchLater";
