@@ -6,18 +6,26 @@ import "./playlistListing.css";
 
 const PlaylistListing = () => {
   const {
-    playlistState: { playlists, loading, error },
+    playlistState: { playlists, loading },
     createPlaylist,
   } = usePlaylist();
 
   const [isCreating, setIsCreating] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
 
+  const submitPlaylistHandler = e => {
+    e.preventDefault();
+    if (playlistName.length) {
+      createPlaylist(playlistName);
+      setPlaylistName("");
+      setIsCreating(false);
+    } else {
+      toast.error("Playlist name can not be empty");
+    }
+  };
+
   return (
     <div>
-      {/* {loading && <Loading />}
-      {error && <span>{error}</span>} */}
-
       {loading ? (
         <Loading />
       ) : (
@@ -35,19 +43,7 @@ const PlaylistListing = () => {
                   />
                 </div>
                 <div className="flex-total-center">
-                  <button
-                    className="btn btn-primary"
-                    onClick={e => {
-                      e.preventDefault();
-                      if (playlistName.length) {
-                        createPlaylist(playlistName);
-                        setPlaylistName("");
-                        setIsCreating(false);
-                      } else {
-                        toast.error("Playlist name can not be empty");
-                      }
-                    }}
-                  >
+                  <button className="btn btn-primary" onClick={e => submitPlaylistHandler(e)}>
                     Create
                   </button>
                   <button className="btn btn-secondary" onClick={() => setIsCreating(false)}>

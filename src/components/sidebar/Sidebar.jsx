@@ -2,9 +2,6 @@ import "./sidebar.css";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const activeClass = isActive => {
-    console.log(isActive);
-  };
   return (
     <ul className="no-style-list sidebar-list">
       {/* <li>

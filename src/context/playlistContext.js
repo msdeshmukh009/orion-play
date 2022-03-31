@@ -42,7 +42,7 @@ const PlaylistProvider = ({ children }) => {
               playlistDispatch({ type: SET_PLAYLIST, payload: res.data.playlists });
             }
           } catch (err) {
-            playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors });
+            playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
           }
         })()
       : playlistDispatch({ type: SET_PLAYLIST, payload: [] });
@@ -60,8 +60,8 @@ const PlaylistProvider = ({ children }) => {
           toast.success("Video added to playlist");
         }
       } catch (err) {
-        playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors });
-        toast.error(err.response.data.errors);
+        playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
+        toast.error(err.response.data.errors[0]);
       }
     }
   };
@@ -77,8 +77,8 @@ const PlaylistProvider = ({ children }) => {
         toast.success("Video removed from playlist");
       }
     } catch (err) {
-      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors });
-      toast.error(err.response.data.errors);
+      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
+      toast.error(err.response.data.errors[0]);
     }
   };
 
@@ -94,8 +94,8 @@ const PlaylistProvider = ({ children }) => {
         video ? await addVideoToPlaylist(video, newPlaylistId) : toast.success("Playlist Created");
       }
     } catch (err) {
-      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors });
-      toast.error(err.response.data.errors);
+      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
+      toast.error(err.response.data.errors[0]);
     }
   };
 
@@ -107,8 +107,8 @@ const PlaylistProvider = ({ children }) => {
         toast.success("Playlist deleted");
       }
     } catch (err) {
-      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors });
-      toast.error(err.response.data.errors);
+      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
+      toast.error(err.response.data.errors[0]);
     }
   };
 

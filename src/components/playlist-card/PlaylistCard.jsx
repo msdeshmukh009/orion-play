@@ -5,11 +5,9 @@ import { thumbnailLink } from "../../utils";
 import "./playlistCard.css";
 
 const PlaylistCard = ({ playlist }) => {
-  const { _id, title, videos } = playlist;
-
-  const { deletePlaylist } = usePlaylist();
-
   const [showOptions, setShowOptions] = useState(false);
+  const { _id, title, videos } = playlist;
+  const { deletePlaylist } = usePlaylist();
 
   return (
     <div className="playlist-card">
@@ -17,7 +15,7 @@ const PlaylistCard = ({ playlist }) => {
         <img
           className="responsive-img"
           src={
-            videos.length ? thumbnailLink(videos[0]?._id) : "/assets/undraw_going_up_re_86kg.svg"
+            videos?.length ? thumbnailLink(videos[0]?._id) : "/assets/undraw_going_up_re_86kg.svg"
           }
           alt={videos[0]?.title}
         />

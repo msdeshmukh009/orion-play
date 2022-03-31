@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { usePlaylist } from "../../context";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context";
 import { thumbnailLink } from "../../utils";
 import { Modal } from "../modal/Modal";
-
+import toast from "react-hot-toast";
 import "./videoCard.css";
 
 const VideoCard = ({ video }) => {
   const { _id, title, creator, creatorImg } = video;
-  const getVideoTitleTrimmedToEightyChar = title => {
-    if (title.length < 80) {
-      return title;
-    }
-    return title.substr(0, 78) + "..";
-  };
   const [showModal, setShowModal] = useState(false);
   const [showThreeDotMenu, setShowThreeDotMenu] = useState(false);
+  const navigate = useNavigate();
+  const {
+    authState: {
+      userDetails: { token },
+    },
+  } = useAuth();
 
   return (
     <>
@@ -55,7 +55,12 @@ const VideoCard = ({ video }) => {
                   className="grid-30-70"
                   onClick={() => {
                     setShowThreeDotMenu(prevState => !prevState);
-                    setShowModal(true);
+                    if (token) {
+                      setShowModal(true);
+                    } else {
+                      toast.error("Please login continue");
+                      navigate("/signin");
+                    }
                   }}
                 >
                   <i className="text-center fas fa-folder-plus"></i>

@@ -1,6 +1,6 @@
 .playlist-listing-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   justify-items: center;
   column-gap: var(--md-space);
   row-gap: var(--xl-space);
@@ -21,6 +21,10 @@
   max-width: 30rem;
   border: 2px solid var(--secondary-color);
   cursor: pointer;
+}
+
+.form-card:active {
+  translate: scale(999);
 }
 .add-new-playlist-container:hover {
   color: var(--primary-color);

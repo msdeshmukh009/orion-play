@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Loading, VideoCard } from "../../components";
 import { useVideos } from "../../context/videosContext";
 import "./explore.css";
