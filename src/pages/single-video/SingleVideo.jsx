@@ -1,8 +1,10 @@
+import "./singleVideo.css";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth, useLikes, useVideos } from "../../context";
+import { useAuth, useLikes, usePlaylist, useVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink } from "../../utils";
-import "./singleVideo.css";
+import { Modal } from "../../components";
 
 const SingleVideo = () => {
   const { videoId } = useParams();
@@ -23,11 +25,13 @@ const SingleVideo = () => {
   } = useAuth();
 
   const navigate = useNavigate();
-
+  const [showModal, setShowModal] = useState(false);
   const video = videos.find(eachVideo => eachVideo._id === videoId);
   const isLiked = likedList.find(eachVideo => eachVideo._id === videoId);
+
   return (
     <main className="video-container grid-70-30">
+      <Modal showModal={showModal} setShowModal={setShowModal} video={video} />
       <section className="video-section">
         <iframe
           className="video-iframe"
@@ -58,7 +62,7 @@ const SingleVideo = () => {
               <i className="fas fa-clock"></i>
             </button>
 
-            <button className="video-cta-buttons">
+            <button className="video-cta-buttons" onClick={() => setShowModal(true)}>
               <i className="fas fa-folder-plus"></i>
             </button>
           </div>

@@ -17,4 +17,11 @@ const likesActions = {
   SET_LIKEDLIST: "SET_LIKEDLIST",
 };
 
-export { videosActions, authActions, likesActions };
+const playlistActions = {
+  INITIALIZE: "INITIALIZE",
+  SET_PLAYLIST: "SET_PLAYLIST",
+  SET_ERROR: "SET_ERROR",
+  UPDATE_PLAYLIST: "UPDATE_PLAYLIST",
+};
+
+export { videosActions, authActions, likesActions, playlistActions };

@@ -18,9 +18,9 @@ const Navbar = () => {
               <i className="fas fa-bars"></i>
             </button>
           </div>
-          <a to="/" className="nav-link">
+          <Link to="/" className="nav-link">
             <h2 className="nav-heading">Orion</h2>
-          </a>
+          </Link>
         </header>
 
         <div className="nav-search-bar">
