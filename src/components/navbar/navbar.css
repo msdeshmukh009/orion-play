@@ -24,8 +24,9 @@
 }
 .nav-heading {
   font-family: "ultraregular", sans-serif;
-
   font-size: 2rem;
+  display: flex;
+  align-items: baseline;
 }
 .user-icon {
   display: flex;

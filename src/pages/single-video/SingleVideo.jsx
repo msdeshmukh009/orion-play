@@ -1,7 +1,7 @@
 import "./singleVideo.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth, useLikes, useVideos, useWatchLaterVideos } from "../../context";
+import { useAuth, useLikes, useVideos, useWatchHistory, useWatchLaterVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink } from "../../utils";
 import { Modal } from "../../components";
@@ -32,10 +32,16 @@ const SingleVideo = () => {
     removeFromWatchLater,
   } = useWatchLaterVideos();
 
+  const {
+    historyState: { history },
+    addToHistory,
+  } = useWatchHistory();
+
   const navigate = useNavigate();
   const video = videos.find(eachVideo => eachVideo._id === videoId);
   const isLiked = likedList.find(eachVideo => eachVideo._id === videoId);
   const isPresentInWatchLater = watchLaterVideos.find(eachVideo => eachVideo._id === videoId);
+  const isPresentInHistory = history.find(eachVideo => eachVideo?._id === videoId);
 
   const handleWatchLater = () => {
     token
@@ -57,6 +63,10 @@ const SingleVideo = () => {
       navigate("/signin");
     }
   };
+
+  useEffect(() => {
+    token ? (!isPresentInHistory ? addToHistory(video) : null) : null;
+  }, []);
 
   return (
     <main className="video-container grid-70-30">

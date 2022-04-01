@@ -7,6 +7,7 @@ export const videos = [
   {
     _id: "RRuovINxpPc",
     title: "We decoded NASA’s messages to aliens by hand",
+    category: "Engineering",
     description:
       "In 1977, twin golden records were sent into space on the Voyager 1 and 2 spacecraft. Still sailing through space at nearly 60,000 km per hour, the records contain sound, songs, and images from earth. But how did NASA include images on an analog record? Here, we decoded the audio, and see the images the way that aliens were intended to see them.",
     creator: "Verge Science",
@@ -16,6 +17,7 @@ export const videos = [
   {
     _id: "-it-OH7pxK4",
     title: "Why NASA hasn’t gone back to the Moon",
+    category: "Astronomy",
     description:
       "NASA has big plans to return to the Moon by 2024, and it’s banking on the historic Space Launch System (SLS) to get them there. But after years of delays and cost overruns, skeptics are questioning whether SLS should remain the biggest priority for NASA. As the 50th anniversary of the Moon landing approaches, we take a look at what the future of solar system exploration might bring.",
     creator: "Verge Science",
@@ -25,6 +27,7 @@ export const videos = [
   {
     _id: "0NbBjNiw4tk",
     title: "Michio Kaku: The Universe in a Nutshell (Full Presentation) | Big Think",
+    category: "General Science",
     description:
       "In a profoundly informative and deeply optimistic discussion, Professor Michio Kaku delivers a glimpse of where science will take us in the next hundred years, as warp drives, teleportation, inter-dimensional wormholes, and even time travel converge with our scientific understanding of physical reality. While firing up our imaginations about the future, he also presents a succinct history of physics to the present.",
     creator: "Big Think",
@@ -34,6 +37,7 @@ export const videos = [
   {
     _id: "Da-2h2B4faU",
     title: "String Theory Explained – What is The True Nature of Reality?",
+    category: "Astronomy",
     description:
       "Is String Theory the final solution for all of physic’s questions or an overhyped dead end? This video was realised with the help of Dr. Alessandro Sfondrini and it was funded by SNSF under Agora Grant n. 171622 and through the NCCR SwissMAP: The Mathematics of Physics.",
     creator: "Kurzgesagt – In a Nutshell",
@@ -43,6 +47,7 @@ export const videos = [
   {
     _id: "0FH9cgRhQ-k",
     title: "The Largest Black Hole in the Universe - Size Comparison",
+    category: "Astronomy",
     description:
       "The largest things in the universe are black holes. In contrast to things like planets or stars they have no physical size limit, and can literally grow endlessly. Although in reality specific things need to happen to create different kinds of black holes, from really tiny ones to the largest single things in the universe. So how do black holes grow and how large is the largest of them all? ",
     creator: "Kurzgesagt – In a Nutshell",
@@ -52,6 +57,7 @@ export const videos = [
   {
     _id: "yqqaW8DCc-I",
     title: "The Insane Engineering of the Perseverance Rover",
+    category: "Engineering",
     description: "The Insane Engineering of the Perseverance Rover",
     creator: "Real Engineering",
     creatorImg:
@@ -60,6 +66,7 @@ export const videos = [
   {
     _id: "F8q82v_majE",
     title: "(NEW) How to Find Orion the Hunter Constellation",
+    category: "Astronomy",
     description:
       "Orion the Hunter is one of the most famous constellations in the sky.  It has been identified in various cultures for thousands of years. If you can learn to identify this constellation, you can easily find the rest of the constellations in the winter sky. ",
     creator: "Learn the Sky",
@@ -70,6 +77,7 @@ export const videos = [
   {
     _id: "yDiD8F9ItX0",
     title: "Deep Field: The Impossible Magnitude of our Universe",
+    category: "Astronomy",
     description:
       "Eric Whitacre's Deep Field: The Impossible Magnitude of our Universe is a unique film and musical experience inspired by one of the most important scientific discoveries of all time: the Hubble Telescope's Deep Field image.",
     creator: "Eric Whitacre",

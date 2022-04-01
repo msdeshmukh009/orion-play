@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { videosReducer } from "../reducers/videosReducer";
 import { videosActions } from "../reducers/actionTypes";
 import { getVideos } from "../services";
+import { filterVideoList } from "../utils";
 
 const { INITIALIZE, SET_VIDEOS, SET_ERROR } = videosActions;
 
@@ -14,6 +15,7 @@ const VideosProvider = ({ children }) => {
     loading: false,
     videos: [],
     error: "",
+    selectedCategory: "all",
   });
 
   useEffect(() => {
@@ -31,8 +33,10 @@ const VideosProvider = ({ children }) => {
     })();
   }, []);
 
+  const finalVideoList = filterVideoList(videoState.selectedCategory, videoState.videos);
+
   return (
-    <videosContext.Provider value={{ videoState, videoDispatch }}>
+    <videosContext.Provider value={{ videoState, videoDispatch, finalVideoList }}>
       {children}
     </videosContext.Provider>
   );

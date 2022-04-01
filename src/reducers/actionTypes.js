@@ -2,6 +2,7 @@ const videosActions = {
   SET_VIDEOS: "SET_VIDEOS",
   INITIALIZE: "INITIALIZE",
   SET_ERROR: "SET_ERROR",
+  SET_CATEGORY: "SET_CATEGORY",
 };
 
 const authActions = {
@@ -28,5 +29,16 @@ const watchLaterActions = {
   SET_WATCH_LATER: "SET_WATCH_LATER",
   SET_ERROR: "SET_ERROR",
 };
-
-export { videosActions, authActions, likesActions, playlistActions, watchLaterActions };
+const historyActions = {
+  INITIALIZE: "INITIALIZE",
+  SET_HISTORY: "SET_WATCH_LATER",
+  SET_ERROR: "SET_ERROR",
+};
+export {
+  videosActions,
+  authActions,
+  likesActions,
+  playlistActions,
+  watchLaterActions,
+  historyActions,
+};

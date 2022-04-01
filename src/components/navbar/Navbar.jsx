@@ -32,7 +32,7 @@ const Navbar = () => {
 
         <ul className="inline-style-list no-style-list nav-list flex-total-center ">
           <li className="nav-list-web-item">
-            <Link className="link-btn" to="/">
+            <Link className="link-btn" to="/explore">
               Explore
             </Link>
           </li>

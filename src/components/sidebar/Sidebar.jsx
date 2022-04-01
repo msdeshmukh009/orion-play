@@ -4,15 +4,18 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <ul className="no-style-list sidebar-list">
-      {/* <li>
-        <NavLink className="grid-30-70" to="/">
-          <i className="fas fa-home"></i>
-          <span className="text-left">Home</span>
-        </NavLink>
-      </li> */}
       <li>
         <NavLink
           to="/"
+          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
+        >
+          <i className="fas fa-home"></i>
+          <span className="text-left">Home</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/explore"
           className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
         >
           <i className="fas fa-compass"></i>
@@ -46,12 +49,15 @@ const Sidebar = () => {
           <span className="text-left">Watch later</span>
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink className="grid-30-70" to="/">
+      <li>
+        <NavLink
+          to="/history"
+          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
+        >
           <i className="fas fa-history"></i>
           <span className="text-left">History</span>
         </NavLink>
-      </li> */}
+      </li>
     </ul>
   );
 };
