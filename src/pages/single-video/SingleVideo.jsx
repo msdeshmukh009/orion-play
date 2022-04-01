@@ -1,12 +1,14 @@
 import "./singleVideo.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth, useLikes, usePlaylist, useVideos } from "../../context";
+import { useAuth, useLikes, useVideos, useWatchLaterVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink } from "../../utils";
 import { Modal } from "../../components";
+import toast from "react-hot-toast";
 
 const SingleVideo = () => {
+  const [showModal, setShowModal] = useState(false);
   const { videoId } = useParams();
   const {
     videoState: { videos },
@@ -24,10 +26,37 @@ const SingleVideo = () => {
     },
   } = useAuth();
 
+  const {
+    watchLaterState: { watchLaterVideos },
+    addToWatchLater,
+    removeFromWatchLater,
+  } = useWatchLaterVideos();
+
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
   const video = videos.find(eachVideo => eachVideo._id === videoId);
   const isLiked = likedList.find(eachVideo => eachVideo._id === videoId);
+  const isPresentInWatchLater = watchLaterVideos.find(eachVideo => eachVideo._id === videoId);
+
+  const handleWatchLater = () => {
+    token
+      ? isPresentInWatchLater
+        ? removeFromWatchLater(videoId)
+        : addToWatchLater(video)
+      : navigate("/signin");
+  };
+
+  const handleLike = () => {
+    token ? (isLiked ? removeFromLike(videoId) : addToLike(video)) : navigate("/signin");
+  };
+
+  const handleSaveToPlaylist = () => {
+    if (token) {
+      setShowModal(true);
+    } else {
+      toast.error("Please login to continue");
+      navigate("/signin");
+    }
+  };
 
   return (
     <main className="video-container grid-70-30">
@@ -49,20 +78,17 @@ const SingleVideo = () => {
           <h3>{video?.title}</h3>
 
           <div className="video-cta">
-            <button
-              className="video-cta-buttons"
-              onClick={() =>
-                token ? (isLiked ? removeFromLike(videoId) : addToLike(video)) : navigate("/signin")
-              }
-            >
+            <button className="video-cta-buttons" onClick={handleLike}>
               <i className={`fas fa-thumbs-up ${isLiked ? "text-primary-color" : ""}`}></i>
             </button>
 
-            <button className="video-cta-buttons">
-              <i className="fas fa-clock"></i>
+            <button className="video-cta-buttons" onClick={handleWatchLater}>
+              <i
+                className={`fas fa-clock ${isPresentInWatchLater ? "text-primary-color" : ""}`}
+              ></i>
             </button>
 
-            <button className="video-cta-buttons" onClick={() => setShowModal(true)}>
+            <button className="video-cta-buttons" onClick={handleSaveToPlaylist}>
               <i className="fas fa-folder-plus"></i>
             </button>
           </div>

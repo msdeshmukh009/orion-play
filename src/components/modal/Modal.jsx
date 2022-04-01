@@ -15,6 +15,17 @@ const Modal = ({ showModal, setShowModal, video }) => {
   const [isCreating, setIsCreating] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (playlistName.trim().length) {
+      createPlaylist(playlistName, video);
+      setPlaylistName("");
+      setIsCreating(false);
+    } else {
+      toast.error("Playlist name can not be empty");
+    }
+  };
+
   return (
     <div
       className={`modal-background ${showModal ? "flex-total-center" : ""}`}
@@ -73,18 +84,7 @@ const Modal = ({ showModal, setShowModal, video }) => {
                 onChange={e => setPlaylistName(e.target.value)}
               />
             </div>
-            <button
-              className="btn btn-primary"
-              onClick={e => {
-                e.preventDefault();
-                if (playlistName.trim().length) {
-                  createPlaylist(playlistName, video);
-                  setPlaylistName("");
-                } else {
-                  toast.error("Playlist name can not be empty");
-                }
-              }}
-            >
+            <button className="btn btn-primary" onClick={e => handleSubmit(e)}>
               Create
             </button>
           </form>

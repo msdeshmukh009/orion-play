@@ -9,3 +9,8 @@ export {
   removeFromPlaylistService,
   removePlaylistService,
 } from "./playlist-services";
+export {
+  getWatchLaterService,
+  addToWatchLaterService,
+  removeFromWatchLaterService,
+} from "./watch-later-services";
