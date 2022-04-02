@@ -5,3 +5,5 @@ export { SingleVideo } from "./single-video/SingleVideo";
 export { Signin, Signup } from "./authentication";
 export { LikedVideos } from "./liked-videos/LikedVideos";
 export { WatchLater } from "./watch-later/WatchLater";
+export { History } from "./history/History";
+export { Home } from "./home/Home";

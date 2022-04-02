@@ -1,6 +1,6 @@
 import { videosActions } from "./actionTypes";
 
-const { SET_VIDEOS, SET_ERROR, INITIALIZE } = videosActions;
+const { SET_VIDEOS, SET_ERROR, INITIALIZE, SET_CATEGORY } = videosActions;
 
 const videosReducer = (state, action) => {
   switch (action.type) {
@@ -13,6 +13,8 @@ const videosReducer = (state, action) => {
     case SET_ERROR:
       return { ...state, loading: false, error: action.payload };
 
+    case SET_CATEGORY:
+      return { ...state, selectedCategory: action.payload };
     default:
       return state;
   }

@@ -8,6 +8,8 @@ import {
   LikedVideos,
   SinglePlaylist,
   WatchLater,
+  History,
+  Home,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import Mockman from "mockman-js";
@@ -19,12 +21,14 @@ const NavigationRoutes = () => {
   } = useAuth();
   return (
     <Routes>
-      <Route path="/" element={<Explore />} />
+      <Route path="/" element={<Home />} />
+      <Route path="/explore" element={<Explore />} />
       <Route path="/explore/:videoId" element={<SingleVideo />} />
       <Route path="/playlist/:playlistId" element={<SinglePlaylist />} />
       <Route path="/liked" element={<PrivateRoute element={LikedVideos} />} />
       <Route path="/playlist" element={<PrivateRoute element={PlaylistListing} />} />
       <Route path="/watch-later" element={<PrivateRoute element={WatchLater} />} />
+      <Route path="/history" element={<PrivateRoute element={History} />} />
       {!token ? (
         <>
           <Route path="/signin" element={<Signin />} />

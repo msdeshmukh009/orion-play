@@ -35,7 +35,7 @@ const WatchLater = () => {
   ) : (
     <main className="flex-total-center flex-column playlist-container-secondary">
       <h3>No videos to watch later</h3>
-      <Link to="/" className="btn btn-primary">
+      <Link to="/explore" className="btn btn-primary">
         Explore
       </Link>
     </main>

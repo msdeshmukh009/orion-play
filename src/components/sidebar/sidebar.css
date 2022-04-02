@@ -27,6 +27,14 @@
 @media only screen and (max-width: 1000px) {
   .sidebar-list {
     position: fixed;
-    left: -100rem;
+    flex-direction: unset;
+    background-color: var(--background-color);
+    bottom: 0;
+    top: 90vh;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    justify-content: space-between;
+    padding: 4.8px;
   }
 }

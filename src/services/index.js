@@ -14,3 +14,10 @@ export {
   addToWatchLaterService,
   removeFromWatchLaterService,
 } from "./watch-later-services";
+export {
+  getHistoryService,
+  addToHistoryService,
+  removeFromHistoryService,
+  clearHistoryService,
+} from "./history-services";
+export { getCategoriesService } from "./getCategoriesService";

@@ -1,39 +1,47 @@
 import { Link } from "react-router-dom";
-import { StackedVideoItem } from "../../components";
-import { useLikes } from "../../context";
+import { Loading, StackedVideoItem } from "../../components";
+import { useWatchHistory } from "../../context";
 import { thumbnailLink } from "../../utils";
 import "../single-playlist/singlePlaylist.css";
 
-const LikedVideos = () => {
+const History = () => {
   const {
-    likesState: { likedList },
-    removeFromLike,
-  } = useLikes();
+    historyState: { history },
+    loading,
+    error,
+    removeFromHistory,
+    clearHistory,
+  } = useWatchHistory();
 
-  return likedList.length ? (
+  return loading ? (
+    <Loading />
+  ) : history.length ? (
     <main className="playlist-container">
       <section className="playlist-description">
         <div className="playlist-img-container">
           <img
             className="responsive-img"
-            src={thumbnailLink(likedList[0]?._id)}
+            src={thumbnailLink(history[0]?._id)}
             alt="playlist-name"
           />
         </div>
         <div className="playlist-text-description flex-column">
-          <span className="text-semibold">Liked Videos</span>
-          <span>{likedList.length} videos</span>
+          <span className="text-semibold"> History</span>
+          <span>{history.length} videos</span>
+          <button className="btn btn-secondary" onClick={() => clearHistory()}>
+            Clear history
+          </button>
         </div>
       </section>
       <section className="playlist-video-items flex-column">
-        {likedList.map(video => (
-          <StackedVideoItem key={video._id} video={video} removeFunction={removeFromLike} />
+        {history.map(video => (
+          <StackedVideoItem key={video._id} video={video} removeFunction={removeFromHistory} />
         ))}
       </section>
     </main>
   ) : (
     <main className="flex-total-center flex-column playlist-container-secondary">
-      <h3>No liked videos</h3>
+      <h3>Nothing in history</h3>
       <Link to="/explore" className="btn btn-primary">
         Explore
       </Link>
@@ -41,4 +49,4 @@ const LikedVideos = () => {
   );
 };
 
-export { LikedVideos };
+export { History };

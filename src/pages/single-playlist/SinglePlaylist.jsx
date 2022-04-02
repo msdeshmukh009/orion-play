@@ -47,7 +47,7 @@ const SinglePlaylist = () => {
       ) : (
         <section className="playlist-video-items flex-total-center flex-column">
           <h3 className="text-center">No videos added</h3>
-          <Link to="/" className="btn btn-primary">
+          <Link to="/explore" className="btn btn-primary">
             Explore
           </Link>
         </section>
