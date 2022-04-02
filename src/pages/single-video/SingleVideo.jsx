@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth, useLikes, useVideos, useWatchHistory, useWatchLaterVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
-import { embedLink } from "../../utils";
+import { embedLink, isPresentIn } from "../../utils";
 import { Modal } from "../../components";
 import toast from "react-hot-toast";
 
 const SingleVideo = () => {
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const { videoId } = useParams();
   const {
     videoState: { videos },
@@ -37,11 +38,14 @@ const SingleVideo = () => {
     addToHistory,
   } = useWatchHistory();
 
-  const navigate = useNavigate();
   const video = videos.find(eachVideo => eachVideo._id === videoId);
-  const isLiked = likedList.find(eachVideo => eachVideo._id === videoId);
-  const isPresentInWatchLater = watchLaterVideos.find(eachVideo => eachVideo._id === videoId);
-  const isPresentInHistory = history.find(eachVideo => eachVideo?._id === videoId);
+
+  const { isLiked, isPresentInWatchLater, isPresentInHistory } = isPresentIn(
+    videoId,
+    likedList,
+    watchLaterVideos,
+    history
+  );
 
   const handleWatchLater = () => {
     token
