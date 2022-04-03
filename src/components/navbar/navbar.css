@@ -10,7 +10,7 @@
 }
 .nav-search-bar {
   border: 2px solid var(--secondary-color);
-  border-radius: 4.8px;
+  border-radius: 5px;
   width: 40%;
 }
 .nav-search-bar .btn {

@@ -7,7 +7,7 @@
 }
 /*** banner ***/
 .banner {
-  border-radius: 4.8px;
+  border-radius: 5px;
   position: relative;
   flex-direction: column;
   row-gap: var(--xl-space);

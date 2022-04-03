@@ -2,6 +2,9 @@ import "./navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks";
 import { useVideos } from "../../context/videosContext";
+import { videosActions } from "../../reducers/actionTypes";
+
+const { APPLY_SEARCH_TERM } = videosActions;
 
 const Navbar = ({ setNavAside }) => {
   const {
@@ -41,7 +44,7 @@ const Navbar = ({ setNavAside }) => {
             value={appliedSearchTerm}
             onChange={e => {
               pathname !== "/explore" ? navigate("/explore") : null;
-              videoDispatch({ type: "APPLY_SEARCH_TERM", payload: e.target.value });
+              videoDispatch({ type: APPLY_SEARCH_TERM, payload: e.target.value });
             }}
           />
         </div>

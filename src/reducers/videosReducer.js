@@ -1,6 +1,6 @@
 import { videosActions } from "./actionTypes";
 
-const { SET_VIDEOS, SET_ERROR, INITIALIZE, SET_CATEGORY } = videosActions;
+const { SET_VIDEOS, SET_ERROR, INITIALIZE, SET_CATEGORY, APPLY_SEARCH_TERM } = videosActions;
 
 const videosReducer = (state, action) => {
   switch (action.type) {
@@ -16,7 +16,7 @@ const videosReducer = (state, action) => {
     case SET_CATEGORY:
       return { ...state, selectedCategory: action.payload };
 
-    case "APPLY_SEARCH_TERM":
+    case APPLY_SEARCH_TERM:
       return { ...state, appliedSearchTerm: action.payload };
     default:
       return state;

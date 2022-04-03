@@ -3,8 +3,6 @@ import { thumbnailLink } from "../../utils";
 import "./stackedVideoItem.css";
 
 const StackedVideoItem = ({ video, removeFunction, playlistId }) => {
-  // const { _id, title } = video;
-
   return (
     <div className="stacked-video-item">
       <Link to={`/explore/${video?._id}`} className="video-img-container">
