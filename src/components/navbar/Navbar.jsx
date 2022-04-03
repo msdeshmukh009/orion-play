@@ -4,7 +4,7 @@ import { useAuth } from "../../hooks";
 import { useVideos } from "../../context/videosContext";
 import { videosActions } from "../../reducers/actionTypes";
 
-const { APPLY_SEARCH_TERM } = videosActions;
+const { APPLY_SEARCH_TERM, SET_CATEGORY } = videosActions;
 
 const Navbar = ({ setNavAside }) => {
   const {
@@ -21,6 +21,12 @@ const Navbar = ({ setNavAside }) => {
 
   const pathname = useLocation();
   const navigate = useNavigate();
+
+  const searchHandler = e => {
+    pathname !== "/explore" ? navigate("/explore") : null;
+    videoDispatch({ type: SET_CATEGORY, payload: "all" });
+    videoDispatch({ type: APPLY_SEARCH_TERM, payload: e.target.value });
+  };
 
   return (
     <nav className="nav-wrapper">
@@ -42,10 +48,7 @@ const Navbar = ({ setNavAside }) => {
             type="search"
             placeholder="Search..."
             value={appliedSearchTerm}
-            onChange={e => {
-              pathname !== "/explore" ? navigate("/explore") : null;
-              videoDispatch({ type: APPLY_SEARCH_TERM, payload: e.target.value });
-            }}
+            onChange={searchHandler}
           />
         </div>
 
