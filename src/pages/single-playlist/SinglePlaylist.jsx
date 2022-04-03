@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { StackedVideoItem } from "../../components";
-import { usePlaylist } from "../../context";
+import { usePlaylist } from "../../hooks";
 import { thumbnailLink } from "../../utils";
 import "./singlePlaylist.css";
 

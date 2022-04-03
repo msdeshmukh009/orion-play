@@ -3,29 +3,21 @@
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
+  height: calc(100vh - 4.6rem);
 }
 /*** banner ***/
 .banner {
-  height: calc(100vh - 4rem);
-  width: 100%;
+  border-radius: 4.8px;
   position: relative;
   flex-direction: column;
   row-gap: var(--xl-space);
-  /* background-color: var(--banner-bg-color);
-  backdrop-filter: blur(8px); */
+  background-color: var(--sidebar-fallback-bg-color);
 }
 .banner-content {
   padding: var(--xl-space);
   border-radius: 5px;
   row-gap: var(--md-space);
-  /* background-color: var(--sidebar-fallback-bg-color); */
 }
-/* @supports (backdrop-filter: blur(3px)) {
-  .banner-content {
-    background-color: var(--banner-bg-color);
-    backdrop-filter: blur(8px);
-  }
-} */
 .banner-heading {
   font-family: "ultraregular", sans-serif;
   font-size: 3rem;
@@ -53,7 +45,5 @@
 }
 .category-link {
   cursor: pointer;
-}
-.category-link:hover {
-  color: var(--secondary-color);
+  border-radius: 10rem;
 }

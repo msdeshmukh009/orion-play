@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer, useContext } from "react";
 import { watchLaterReducer } from "../reducers";
 import { watchLaterActions } from "../reducers/actionTypes";
-import { useAuth } from "./authContext";
+import { useAuth } from "../hooks";
 import {
   getWatchLaterService,
   addToWatchLaterService,
@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 
 const { INITIALIZE, SET_ERROR, SET_WATCH_LATER } = watchLaterActions;
 
-const watchLaterContext = createContext();
+export const watchLaterContext = createContext();
 
 const useWatchLaterVideos = () => useContext(watchLaterContext);
 
@@ -46,7 +46,7 @@ const WatchLaterVideosProvider = ({ children }) => {
         })()
       : watchLaterDispatch({ type: SET_WATCH_LATER, payload: [] });
   }, [token]);
-
+  //TODO: Combine
   const addToWatchLater = async video => {
     try {
       watchLaterDispatch({ type: INITIALIZE });

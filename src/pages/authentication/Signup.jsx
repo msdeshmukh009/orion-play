@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Input, Loading, OverlayContainer, PasswordInput } from "../../components";
-import { useAuth } from "../../context";
+import { useAuth } from "../../hooks";
 import { validFormChecker } from "./utils";
 import "./authentication.css";
 

@@ -6,15 +6,6 @@ const Sidebar = () => {
     <ul className="no-style-list sidebar-list">
       <li>
         <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
-        >
-          <i className="fas fa-home"></i>
-          <span className="text-left">Home</span>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/explore"
           className={({ isActive }) => (isActive ? "grid-30-70 active-side-link" : "grid-30-70")}
         >

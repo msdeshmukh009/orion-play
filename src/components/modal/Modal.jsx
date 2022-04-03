@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { usePlaylist } from "../../context";
+// import { usePlaylist } from "../../context";
+import { usePlaylist } from "../../hooks/usePlaylist";
 import { Loading } from "../loading/Loading";
 import toast from "react-hot-toast";
 import "./modal.css";

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Loading, StackedVideoItem } from "../../components";
-import { useWatchHistory } from "../../context";
+import { useWatchHistory } from "../../hooks";
 import { thumbnailLink } from "../../utils";
 import "../single-playlist/singlePlaylist.css";
 
@@ -35,7 +35,7 @@ const History = () => {
       </section>
       <section className="playlist-video-items flex-column">
         {history.map(video => (
-          <StackedVideoItem key={video._id} video={video} removeFunction={removeFromHistory} />
+          <StackedVideoItem key={video?._id} video={video} removeFunction={removeFromHistory} />
         ))}
       </section>
     </main>

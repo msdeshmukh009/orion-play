@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Input, Loading, OverlayContainer } from "../../components";
 import { PasswordInput } from "../../components/input/PasswordInput";
-import { useAuth } from "../../context";
+import { useAuth } from "../../hooks";
 import { validLoginFormChecker } from "./utils";
 import "./authentication.css";
 

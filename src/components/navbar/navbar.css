@@ -3,10 +3,24 @@
   width: 100%;
   box-shadow: var(--nav-bar-shadow);
   grid-area: nav;
-  z-index: 1005;
+  z-index: 2;
   position: sticky;
   top: 0;
   background-color: var(--background-color);
+}
+.nav-search-bar {
+  border: 2px solid var(--secondary-color);
+  border-radius: 4.8px;
+  width: 40%;
+}
+.nav-search-bar .btn {
+  position: unset;
+}
+.nav-search-bar .form-field[type="search"] {
+  border: none;
+}
+.nav-search-bar .form-field:focus {
+  box-shadow: unset;
 }
 .nav {
   max-width: 2000px;
@@ -45,7 +59,73 @@
 .display-none {
   display: none;
 }
-
+/*** Styles for nav aside ***/
+.nav-aside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -100rem;
+  width: 30%;
+  z-index: 10;
+  transition: 0.3s ease-in;
+  background-color: var(--background-color);
+  box-shadow: var(--card-hover-shadow);
+}
+.nav-aside-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  z-index: 9;
+  transition: 0.3s ease-in all;
+}
+.nav-aside-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--lg-space);
+  padding: var(--sm-space);
+}
+.nav-aside-list li {
+  width: 100%;
+  text-align: center;
+}
+.nav-aside-link {
+  text-decoration: none;
+  width: 100%;
+  color: var(--text-color);
+}
+.nav-aside-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color);
+  padding: var(--lg-space);
+}
+.nav-aside-user {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--text-color);
+  padding: var(--sm-space);
+}
+.show-nav-aside {
+  left: 0;
+}
+.show-nav-background {
+  display: block;
+}
+.mobile-search-bar {
+  display: none;
+  width: 100%;
+}
+/*******/
 /*** media-query ***/
 @media only screen and (max-width: 1000px) {
   .nav-list-web-item {
@@ -53,5 +133,21 @@
   }
   .burger-menu {
     display: block;
+  }
+  .mobile-search-bar {
+    display: flex;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .nav-aside {
+    left: -100rem;
+  }
+  .nav-aside-background {
+    display: none;
+  }
+}
+@media only screen and (max-width: 525px) {
+  .nav-aside {
+    width: 70%;
   }
 }

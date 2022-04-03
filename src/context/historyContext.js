@@ -6,13 +6,13 @@ import {
   removeFromHistoryService,
   clearHistoryService,
 } from "../services";
-import { useAuth } from "./authContext";
+import { useAuth } from "../hooks";
 import { historyActions } from "../reducers/actionTypes";
 import toast from "react-hot-toast";
 
 const { INITIALIZE, SET_ERROR, SET_HISTORY } = historyActions;
 
-const historyContext = createContext();
+export const historyContext = createContext();
 
 const useWatchHistory = () => useContext(historyContext);
 

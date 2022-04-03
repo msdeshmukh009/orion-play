@@ -3,22 +3,24 @@ import { thumbnailLink } from "../../utils";
 import "./stackedVideoItem.css";
 
 const StackedVideoItem = ({ video, removeFunction, playlistId }) => {
-  const { _id, title } = video;
+  // const { _id, title } = video;
 
   return (
     <div className="stacked-video-item">
-      <Link to={`/explore/${video._id}`} className="video-img-container">
-        <img className="responsive-img" src={thumbnailLink(_id)} alt="" />
+      <Link to={`/explore/${video?._id}`} className="video-img-container">
+        <img className="responsive-img" src={thumbnailLink(video?._id)} alt={video?.title} />
       </Link>
 
-      <Link to={`/explore/${video._id}`} className="video-description">
-        {title}
+      <Link to={`/explore/${video?._id}`} className="video-description">
+        {video?.title}
       </Link>
 
       <div className="video-cta">
         <button
           className="btn btn-outline"
-          onClick={() => (playlistId ? removeFunction(playlistId, _id) : removeFunction(_id))}
+          onClick={() =>
+            playlistId ? removeFunction(playlistId, video?._id) : removeFunction(video?._id)
+          }
         >
           <i className="fas fa-trash"></i>
         </button>

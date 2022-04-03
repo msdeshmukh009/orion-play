@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth, useWatchLaterVideos } from "../../context";
+import { useWatchLater, useAuth } from "../../hooks";
 import { thumbnailLink } from "../../utils";
 import { Modal } from "../modal/Modal";
 import toast from "react-hot-toast";
@@ -10,6 +10,7 @@ const VideoCard = ({ video }) => {
   const { _id, title, creator, creatorImg } = video;
   const [showModal, setShowModal] = useState(false);
   const [showThreeDotMenu, setShowThreeDotMenu] = useState(false);
+  const videoDescriptionRef = useRef(null);
   const navigate = useNavigate();
   const {
     authState: {
@@ -21,7 +22,7 @@ const VideoCard = ({ video }) => {
     watchLaterState: { watchLaterVideos },
     addToWatchLater,
     removeFromWatchLater,
-  } = useWatchLaterVideos();
+  } = useWatchLater();
 
   const isPresentInWatchLater = watchLaterVideos.find(eachVideo => eachVideo._id === video._id);
 
@@ -45,6 +46,23 @@ const VideoCard = ({ video }) => {
     }
   };
 
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      if (
+        showThreeDotMenu &&
+        videoDescriptionRef.current &&
+        !videoDescriptionRef.current.contains(e.target)
+      ) {
+        setShowThreeDotMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [showThreeDotMenu]);
+
   return (
     <>
       <Modal showModal={showModal} setShowModal={setShowModal} video={video} />
@@ -53,7 +71,7 @@ const VideoCard = ({ video }) => {
           <img className="responsive-img" src={thumbnailLink(_id)} alt={title} />
         </Link>
 
-        <div className="video-card-description-container">
+        <div ref={videoDescriptionRef} className="video-card-description-container">
           <div className="description-image-container">
             <img className="responsive-img rounded-img" src={creatorImg} alt={creator} />
           </div>

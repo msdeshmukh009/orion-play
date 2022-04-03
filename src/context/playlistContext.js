@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, useEffect, useState } from "react";
 import { playlistReducer } from "../reducers";
-import { useAuth } from "./authContext";
+import { useAuth } from "../hooks";
 import toast from "react-hot-toast";
 import { playlistActions } from "../reducers/actionTypes";
 import {
@@ -13,7 +13,7 @@ import {
 
 const { INITIALIZE, SET_PLAYLIST, SET_ERROR, UPDATE_PLAYLIST } = playlistActions;
 
-const playlistContext = createContext();
+export const playlistContext = createContext();
 
 const usePlaylist = () => useContext(playlistContext);
 
@@ -49,20 +49,18 @@ const PlaylistProvider = ({ children }) => {
   }, [token]);
 
   const addVideoToPlaylist = async (video, playlistId) => {
-    {
-      try {
-        playlistDispatch({ type: INITIALIZE });
+    try {
+      playlistDispatch({ type: INITIALIZE });
 
-        const res = await addToPlaylistService(token, playlistId, video);
+      const res = await addToPlaylistService(token, playlistId, video);
 
-        if (res.status === 201) {
-          playlistDispatch({ type: UPDATE_PLAYLIST, payload: res.data.playlist });
-          toast.success("Video added to playlist");
-        }
-      } catch (err) {
-        playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
-        toast.error(err.response.data.errors[0]);
+      if (res.status === 201) {
+        playlistDispatch({ type: UPDATE_PLAYLIST, payload: res.data.playlist });
+        toast.success("Video added to playlist");
       }
+    } catch (err) {
+      playlistDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
+      toast.error(err.response.data.errors[0]);
     }
   };
 

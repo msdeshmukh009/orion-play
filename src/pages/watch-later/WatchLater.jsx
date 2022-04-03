@@ -1,4 +1,4 @@
-import { useWatchLaterVideos } from "../../context";
+import { useWatchLater } from "../../hooks";
 import { Link } from "react-router-dom";
 import { StackedVideoItem } from "../../components";
 import "../single-playlist/singlePlaylist.css";
@@ -8,8 +8,7 @@ const WatchLater = () => {
   const {
     watchLaterState: { watchLaterVideos },
     removeFromWatchLater,
-  } = useWatchLaterVideos();
-  console.log(watchLaterVideos);
+  } = useWatchLater();
 
   return watchLaterVideos?.length ? (
     <main className="playlist-container">

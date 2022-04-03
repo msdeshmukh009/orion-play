@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loading, PlaylistCard } from "../../components";
-import { usePlaylist } from "../../context";
+import { usePlaylist } from "../../hooks";
 import toast from "react-hot-toast";
 import "./playlistListing.css";
 

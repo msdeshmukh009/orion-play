@@ -1,36 +1,24 @@
-import { createContext, useContext, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
-import { authReducer } from "../reducers";
+import { useContext } from "react";
+import toast from "react-hot-toast";
+import { authContext } from "../context/authContext";
 import { loginService, signupService } from "../services";
 import { authActions } from "../reducers/actionTypes";
-import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
-const { INITIALIZE, LOGIN_USER, LOGOUT_USER, SET_ERROR } = authActions;
+const { SET_ERROR, INITIALIZE, LOGIN_USER, LOGOUT_USER } = authActions;
 
-export const authContext = createContext();
-
-const initialState = {
-  userDetails: {
-    userName: JSON.parse(localStorage.getItem("jwt"))?.userName || "",
-    token: JSON.parse(localStorage.getItem("jwt"))?.token || "",
-  },
-  loading: false,
-  error: "",
-};
-
-const AuthProvider = ({ children }) => {
-  const [authState, authDispatch] = useReducer(authReducer, initialState);
+const useAuth = () => {
+  const { authState, authDispatch } = useContext(authContext);
   const navigate = useNavigate();
-
   const login = async (userInput, from) => {
     try {
       authDispatch({ type: INITIALIZE });
 
       const res = await loginService(userInput);
-      console.log(res);
+
       if (res.status === 200) {
         const {
-          foundUser: { firstName, likes },
+          foundUser: { firstName },
           encodedToken,
         } = res.data;
 
@@ -46,12 +34,11 @@ const AuthProvider = ({ children }) => {
         navigate(from, { replace: true });
       }
     } catch (err) {
-      authDispatch({ type: SET_ERROR, payload: err.response.data.errors });
+      authDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
     }
   };
 
   const signup = async userInput => {
-    console.log(userInput);
     try {
       authDispatch({ type: INITIALIZE });
 
@@ -75,7 +62,7 @@ const AuthProvider = ({ children }) => {
         navigate("/");
       }
     } catch (err) {
-      authDispatch({ type: SET_ERROR, payload: err.response.data.errors });
+      authDispatch({ type: SET_ERROR, payload: err.response.data.errors[0] });
     }
   };
 
@@ -84,11 +71,8 @@ const AuthProvider = ({ children }) => {
     navigate("/");
     localStorage.removeItem("jwt");
   };
-  return (
-    <authContext.Provider value={{ authState, authDispatch, login, signup, logout }}>
-      {children}
-    </authContext.Provider>
-  );
+
+  return { authState, login, signup, logout };
 };
 
-export { AuthProvider };
+export { useAuth };
