@@ -1,20 +1,15 @@
 import { Server, Model, RestSerializer } from "miragejs";
-import {
-  loginHandler,
-  signupHandler,
-} from "./backend/controllers/AuthController";
+import { loginHandler, signupHandler } from "./backend/controllers/AuthController";
 import {
   getHistoryVideosHandler,
   addVideoToHistoryHandler,
   removeVideoFromHistoryHandler,
   clearHistoryHandler,
 } from "./backend/controllers/HistoryController";
-import {
-  getAllVideosHandler,
-  getVideoHandler,
-} from "./backend/controllers/VideoController";
+import { getAllVideosHandler, getVideoHandler } from "./backend/controllers/VideoController";
 import { videos } from "./backend/db/videos";
 import { categories } from "./backend/db/categories";
+
 import {
   getAllCategoriesHandler,
   getCategoryHandler,
@@ -38,6 +33,14 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
+import {
+  getAllNotesHandler,
+  getNotesForVideo,
+  createNoteHandler,
+  deleteNoteHandler,
+  updateNoteHandler,
+} from "./backend/controllers/notesController";
+
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -53,22 +56,24 @@ export function makeServer({ environment = "development" } = {}) {
       history: Model,
       playlist: Model,
       watchlater: Model,
+      notes: Model,
     },
 
     // Runs on the start of the server
     seeds(server) {
       server.logging = false;
-      videos.forEach((item) => {
+      videos.forEach(item => {
         server.create("video", { ...item });
       });
-      categories.forEach((item) => server.create("category", { ...item }));
-      users.forEach((item) =>
+      categories.forEach(item => server.create("category", { ...item }));
+      users.forEach(item =>
         server.create("user", {
           ...item,
           likes: [],
           watchlater: [],
           history: [],
           playlists: [],
+          notes: [],
         })
       );
     },
@@ -97,27 +102,15 @@ export function makeServer({ environment = "development" } = {}) {
       // watch later routes (private)
       this.get("/user/watchlater", getWatchLaterVideosHandler.bind(this));
       this.post("/user/watchlater", addItemToWatchLaterVideos.bind(this));
-      this.delete(
-        "/user/watchlater/:videoId",
-        removeItemFromWatchLaterVideos.bind(this)
-      );
+      this.delete("/user/watchlater/:videoId", removeItemFromWatchLaterVideos.bind(this));
 
       // playlist routes (private)
       this.get("/user/playlists", getAllPlaylistsHandler.bind(this));
       this.post("/user/playlists", addNewPlaylistHandler.bind(this));
-      this.delete(
-        "/user/playlists/:playlistId",
-        removePlaylistHandler.bind(this)
-      );
+      this.delete("/user/playlists/:playlistId", removePlaylistHandler.bind(this));
 
-      this.get(
-        "/user/playlists/:playlistId",
-        getVideosFromPlaylistHandler.bind(this)
-      );
-      this.post(
-        "/user/playlists/:playlistId",
-        addVideoToPlaylistHandler.bind(this)
-      );
+      this.get("/user/playlists/:playlistId", getVideosFromPlaylistHandler.bind(this));
+      this.post("/user/playlists/:playlistId", addVideoToPlaylistHandler.bind(this));
       this.delete(
         "/user/playlists/:playlistId/:videoId",
         removeVideoFromPlaylistHandler.bind(this)
@@ -126,11 +119,14 @@ export function makeServer({ environment = "development" } = {}) {
       // history routes (private)
       this.get("/user/history", getHistoryVideosHandler.bind(this));
       this.post("/user/history", addVideoToHistoryHandler.bind(this));
-      this.delete(
-        "/user/history/:videoId",
-        removeVideoFromHistoryHandler.bind(this)
-      );
+      this.delete("/user/history/:videoId", removeVideoFromHistoryHandler.bind(this));
       this.delete("/user/history/all", clearHistoryHandler.bind(this));
+
+      //notes routes
+      this.get("/user/notes/:videoId", getNotesForVideo.bind(this));
+      this.post("/user/notes", createNoteHandler.bind(this));
+      this.post("/user/notes/:noteId", updateNoteHandler.bind(this));
+      this.delete("/user/notes/:noteId", deleteNoteHandler.bind(this));
     },
   });
 }

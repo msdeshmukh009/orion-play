@@ -20,6 +20,9 @@
 .notes-form .input-grp {
   margin: var(--md-space) 0;
 }
+.notes-form .form-cta {
+  gap: var(--md-space);
+}
 .notes-section {
   gap: var(--md-space);
   padding: var(--sm-space);

@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { useVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink, isPresentIn } from "../../utils";
-import { useLikes, useWatchLater, useWatchHistory, useAuth } from "../../hooks";
+import { useLikes, useWatchLater, useWatchHistory, useAuth, useNotes } from "../../hooks";
 import { Modal } from "../../components";
 import toast from "react-hot-toast";
+import { NoteCard } from "./NoteCard";
+import { NoteEditor } from "./NoteEditor";
 
 const SingleVideo = () => {
   const [showModal, setShowModal] = useState(false);
@@ -38,6 +40,13 @@ const SingleVideo = () => {
     historyState: { history },
     addToHistory,
   } = useWatchHistory();
+
+  const {
+    notesState: { notes, loading: notesLoading, error: notesError },
+    createNote,
+    deleteNote,
+    editNote,
+  } = useNotes(videoId);
 
   const video = videos.find(eachVideo => eachVideo._id === videoId);
 
@@ -128,30 +137,12 @@ const SingleVideo = () => {
 
       <section className="notes-section flex-column">
         <h2 className="text-center">Notes</h2>
-        <form className="notes-form">
-          <div className="input-grp">
-            <input className="form-field" type="text" required />
-          </div>
-          <div className="input-grp">
-            <textarea className="form-field" cols="30" rows="10"></textarea>
-          </div>
-          <button className="btn btn-primary">Save note</button>
-        </form>
-
-        <div className="notes-card flex-column">
-          <div className="card text-card">
-            <h3>This is a Text card</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Numquam, vel.</p>
-            <div className="card-cta-vertical">
-              <button className="btn btn-outline text-primary-color">
-                <i className="far fa-edit"></i>
-              </button>
-              <button className="btn btn-outline text-primary-color">
-                <i className="far fa-trash"></i>
-              </button>
-            </div>
-          </div>
-        </div>
+        <NoteEditor createNote={createNote} videoId={videoId} token={token} />
+        {notesLoading && <span className="text-center">Fetching notes...</span>}
+        {notesError && <span className="text-center">{notesError}</span>}
+        {notes.map(note => (
+          <NoteCard key={note._id} note={note} deleteNote={deleteNote} editNote={editNote} />
+        ))}
       </section>
     </main>
   );
