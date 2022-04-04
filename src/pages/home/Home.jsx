@@ -38,7 +38,7 @@ const Home = () => {
             {categories.map(({ _id, categoryName }) => {
               return (
                 <div
-                  className="category-link"
+                  className="category-link btn btn-outline-primary"
                   key={_id}
                   onClick={() => handleNavigate(categoryName)}
                 >

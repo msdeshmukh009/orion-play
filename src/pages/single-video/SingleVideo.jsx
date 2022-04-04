@@ -1,9 +1,10 @@
 import "./singleVideo.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth, useLikes, useVideos, useWatchHistory, useWatchLaterVideos } from "../../context";
+import { useVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink, isPresentIn } from "../../utils";
+import { useLikes, useWatchLater, useWatchHistory, useAuth } from "../../hooks";
 import { Modal } from "../../components";
 import toast from "react-hot-toast";
 
@@ -11,6 +12,12 @@ const SingleVideo = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const { videoId } = useParams();
+  const {
+    authState: {
+      userDetails: { token },
+    },
+  } = useAuth();
+
   const {
     videoState: { videos },
   } = useVideos();
@@ -22,16 +29,10 @@ const SingleVideo = () => {
   } = useLikes();
 
   const {
-    authState: {
-      userDetails: { token },
-    },
-  } = useAuth();
-
-  const {
     watchLaterState: { watchLaterVideos },
     addToWatchLater,
     removeFromWatchLater,
-  } = useWatchLaterVideos();
+  } = useWatchLater();
 
   const {
     historyState: { history },
@@ -69,8 +70,10 @@ const SingleVideo = () => {
   };
 
   useEffect(() => {
-    token ? (!isPresentInHistory ? addToHistory(video) : null) : null;
-  }, []);
+    if (token && !isPresentInHistory && video) {
+      addToHistory(video);
+    }
+  }, [video]);
 
   return (
     <main className="video-container grid-70-30">

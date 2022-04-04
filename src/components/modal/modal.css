@@ -1,3 +1,6 @@
+.modal-action-btn {
+  cursor: pointer;
+}
 .modal-background {
   z-index: 1500;
 }

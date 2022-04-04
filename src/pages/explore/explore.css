@@ -24,11 +24,3 @@
   gap: var(--md-space);
   padding: var(--md-space);
 }
-
-@media only screen and (max-width: 500px) {
-  .chip-btn {
-    flex: 1;
-    font-size: 0.8rem;
-    padding: 3px;
-  }
-}

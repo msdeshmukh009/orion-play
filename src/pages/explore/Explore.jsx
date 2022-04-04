@@ -44,11 +44,15 @@ const Explore = () => {
         </div>
       )}
 
-      <main className="video-listing-grid">
-        {finalVideoList?.map(video => (
-          <VideoCard key={video._id} video={video} />
-        ))}
-      </main>
+      {finalVideoList.length ? (
+        <main className="video-listing-grid">
+          {finalVideoList?.map(video => (
+            <VideoCard key={video._id} video={video} />
+          ))}
+        </main>
+      ) : (
+        !loading && <div className="text-center">No results found...</div>
+      )}
     </>
   );
 };

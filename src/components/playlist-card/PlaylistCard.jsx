@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { usePlaylist } from "../../context/playlistContext";
+import { usePlaylist } from "../../hooks";
 import { thumbnailLink } from "../../utils";
 import "./playlistCard.css";
 

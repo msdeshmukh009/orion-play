@@ -19,22 +19,14 @@
   gap: 0;
   cursor: pointer;
 }
-.grid-30-70.active-side-link {
+.grid-30-70.active-side-link,
+.nav-aside-link.active-side-link {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
 
 @media only screen and (max-width: 1000px) {
   .sidebar-list {
-    position: fixed;
-    flex-direction: unset;
-    background-color: var(--background-color);
-    bottom: 0;
-    top: 90vh;
-    left: 0;
-    right: 0;
-    z-index: 2;
-    justify-content: space-between;
-    padding: 4.8px;
+    display: none;
   }
 }

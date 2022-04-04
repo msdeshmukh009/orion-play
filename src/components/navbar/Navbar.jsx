@@ -1,20 +1,39 @@
 import "./navbar.css";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks";
+import { useVideos } from "../../context/videosContext";
+import { videosActions } from "../../reducers/actionTypes";
 
-const Navbar = () => {
+const { APPLY_SEARCH_TERM, SET_CATEGORY } = videosActions;
+
+const Navbar = ({ setNavAside }) => {
   const {
     authState: {
       userDetails: { token },
     },
     logout,
   } = useAuth();
+
+  const {
+    videoState: { appliedSearchTerm },
+    videoDispatch,
+  } = useVideos();
+
+  const pathname = useLocation();
+  const navigate = useNavigate();
+
+  const searchHandler = e => {
+    pathname !== "/explore" ? navigate("/explore") : null;
+    videoDispatch({ type: SET_CATEGORY, payload: "all" });
+    videoDispatch({ type: APPLY_SEARCH_TERM, payload: e.target.value });
+  };
+
   return (
     <nav className="nav-wrapper">
       <div className="nav">
         <header className="nav-header flex-total-center">
           <div className="burger-menu">
-            <button className="btn btn-outline">
+            <button className="btn btn-outline" onClick={() => setNavAside(true)}>
               <i className="fas fa-bars"></i>
             </button>
           </div>
@@ -24,10 +43,13 @@ const Navbar = () => {
         </header>
 
         <div className="nav-search-bar">
-          <button className="btn">
-            <i className="fas fa-search"></i>
-          </button>
-          <input className="form-field" type="search" placeholder="search" />
+          <input
+            className="form-field"
+            type="search"
+            placeholder="Search..."
+            value={appliedSearchTerm}
+            onChange={searchHandler}
+          />
         </div>
 
         <ul className="inline-style-list no-style-list nav-list flex-total-center ">
@@ -51,6 +73,18 @@ const Navbar = () => {
             </li>
           )}
         </ul>
+      </div>
+      <div className="nav-search-bar mobile-search-bar">
+        <input
+          className="form-field"
+          type="search"
+          placeholder="Search..."
+          value={appliedSearchTerm}
+          onChange={e => {
+            pathname !== "/explore" ? navigate("/explore") : null;
+            videoDispatch({ type: "APPLY_SEARCH_TERM", payload: e.target.value });
+          }}
+        />
       </div>
     </nav>
   );

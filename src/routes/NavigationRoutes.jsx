@@ -13,7 +13,7 @@ import {
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import Mockman from "mockman-js";
-import { useAuth } from "../context";
+import { useAuth } from "../hooks";
 
 const NavigationRoutes = () => {
   const {

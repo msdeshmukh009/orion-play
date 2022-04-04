@@ -16,6 +16,7 @@ const VideosProvider = ({ children }) => {
     videos: [],
     error: "",
     selectedCategory: "all",
+    appliedSearchTerm: "",
   });
 
   useEffect(() => {
@@ -32,8 +33,14 @@ const VideosProvider = ({ children }) => {
       }
     })();
   }, []);
+  const filteredList = filterVideoList(videoState.selectedCategory, videoState.videos);
 
-  const finalVideoList = filterVideoList(videoState.selectedCategory, videoState.videos);
+  const finalVideoList =
+    videoState.appliedSearchTerm === ""
+      ? filteredList
+      : filteredList.filter(video =>
+          video.title.toLowerCase().includes(videoState.appliedSearchTerm.toLowerCase())
+        );
 
   return (
     <videosContext.Provider value={{ videoState, videoDispatch, finalVideoList }}>

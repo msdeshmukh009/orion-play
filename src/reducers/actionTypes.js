@@ -3,6 +3,7 @@ const videosActions = {
   INITIALIZE: "INITIALIZE",
   SET_ERROR: "SET_ERROR",
   SET_CATEGORY: "SET_CATEGORY",
+  APPLY_SEARCH_TERM: "APPLY_SEARCH_TERM",
 };
 
 const authActions = {
