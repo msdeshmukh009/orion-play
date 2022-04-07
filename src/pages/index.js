@@ -7,3 +7,4 @@ export { LikedVideos } from "./liked-videos/LikedVideos";
 export { WatchLater } from "./watch-later/WatchLater";
 export { History } from "./history/History";
 export { Home } from "./home/Home";
+export { NotFound } from "./not-found/NotFound";

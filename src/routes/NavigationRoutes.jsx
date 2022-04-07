@@ -10,6 +10,7 @@ import {
   WatchLater,
   History,
   Home,
+  NotFound,
 } from "../pages";
 import { PrivateRoute } from "./PrivateRoute";
 import Mockman from "mockman-js";
@@ -41,6 +42,7 @@ const NavigationRoutes = () => {
         </>
       )}
       <Route path="/mockman" element={<Mockman />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

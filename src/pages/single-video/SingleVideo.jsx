@@ -5,10 +5,11 @@ import { useVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink, isPresentIn } from "../../utils";
 import { useLikes, useWatchLater, useWatchHistory, useAuth, useNotes } from "../../hooks";
-import { Modal } from "../../components";
+import { Loading, Modal } from "../../components";
 import toast from "react-hot-toast";
 import { NoteCard } from "./NoteCard";
 import { NoteEditor } from "./NoteEditor";
+import { NotFound } from "../not-found/NotFound";
 
 const SingleVideo = () => {
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +22,7 @@ const SingleVideo = () => {
   } = useAuth();
 
   const {
-    videoState: { videos },
+    videoState: { videos, loading },
   } = useVideos();
 
   const {
@@ -84,7 +85,7 @@ const SingleVideo = () => {
     }
   }, [video]);
 
-  return (
+  return video ? (
     <main className="video-container grid-70-30">
       <Modal showModal={showModal} setShowModal={setShowModal} video={video} />
       <section className="video-section">
@@ -145,6 +146,10 @@ const SingleVideo = () => {
         ))}
       </section>
     </main>
+  ) : loading ? (
+    <Loading />
+  ) : (
+    <NotFound />
   );
 };
 
