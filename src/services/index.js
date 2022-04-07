@@ -21,3 +21,9 @@ export {
   clearHistoryService,
 } from "./history-services";
 export { getCategoriesService } from "./getCategoriesService";
+export {
+  getNotesForVideoService,
+  createNoteService,
+  updateNoteService,
+  deleteNoteService,
+} from "./notesServices";

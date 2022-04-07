@@ -1,0 +1,4 @@
+.not-found-container {
+  height: 80vh;
+  gap: var(--md-space);
+}

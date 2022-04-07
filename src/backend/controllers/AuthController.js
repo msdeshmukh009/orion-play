@@ -39,6 +39,7 @@ export const signupHandler = function (schema, request) {
       history: [],
       playlists: [],
       watchlater: [],
+      notes: [],
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);
@@ -72,10 +73,7 @@ export const loginHandler = function (schema, request) {
       );
     }
     if (password === foundUser.password) {
-      const encodedToken = sign(
-        { _id: foundUser._id, email },
-        process.env.REACT_APP_JWT_SECRET
-      );
+      const encodedToken = sign({ _id: foundUser._id, email }, process.env.REACT_APP_JWT_SECRET);
       foundUser.password = undefined;
       return new Response(200, {}, { foundUser, encodedToken });
     }
@@ -83,9 +81,7 @@ export const loginHandler = function (schema, request) {
       401,
       {},
       {
-        errors: [
-          "The credentials you entered are invalid. Unauthorized access error.",
-        ],
+        errors: ["The credentials you entered are invalid. Unauthorized access error."],
       }
     );
   } catch (error) {
