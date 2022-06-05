@@ -1,10 +1,10 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { videosReducer } from "../reducers/videosReducer";
 import { videosActions } from "../reducers/actionTypes";
-import { getVideos } from "../services";
+import { getVideos, getPagedVideosService } from "../services";
 import { filterVideoList } from "../utils";
 
-const { INITIALIZE, SET_VIDEOS, SET_ERROR } = videosActions;
+const { INITIALIZE, SET_VIDEOS, SET_ERROR, SET_HAS_MORE } = videosActions;
 
 const videosContext = createContext();
 
@@ -17,14 +17,15 @@ const VideosProvider = ({ children }) => {
     error: "",
     selectedCategory: "all",
     appliedSearchTerm: "",
+    pageNumber: 0,
+    hasMore: true,
   });
 
   useEffect(() => {
     (async () => {
       try {
         videoDispatch({ type: INITIALIZE });
-
-        const res = await getVideos();
+        const res = await getPagedVideosService(videoState.pageNumber);
         if (res.status === 200) {
           videoDispatch({ type: SET_VIDEOS, payload: res.data.videos });
         }
@@ -32,7 +33,8 @@ const VideosProvider = ({ children }) => {
         videoDispatch({ type: SET_ERROR, payload: err.message });
       }
     })();
-  }, []);
+  }, [videoState.pageNumber]);
+
   const filteredList = filterVideoList(videoState.selectedCategory, videoState.videos);
 
   const finalVideoList =
