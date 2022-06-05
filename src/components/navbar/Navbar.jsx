@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks";
 import { useVideos } from "../../context/videosContext";
 import { videosActions } from "../../reducers/actionTypes";
+import { debounce } from "../../utils";
 
 const { APPLY_SEARCH_TERM, SET_CATEGORY } = videosActions;
 
@@ -14,10 +15,7 @@ const Navbar = ({ setNavAside }) => {
     logout,
   } = useAuth();
 
-  const {
-    videoState: { appliedSearchTerm },
-    videoDispatch,
-  } = useVideos();
+  const { videoDispatch } = useVideos();
 
   const pathname = useLocation();
   const navigate = useNavigate();
@@ -25,7 +23,7 @@ const Navbar = ({ setNavAside }) => {
   const searchHandler = e => {
     pathname !== "/explore" ? navigate("/explore") : null;
     videoDispatch({ type: SET_CATEGORY, payload: "all" });
-    videoDispatch({ type: APPLY_SEARCH_TERM, payload: e.target.value });
+    debounce(() => videoDispatch({ type: "APPLY_SEARCH_TERM", payload: e.target.value }), 400)();
   };
 
   return (
@@ -47,7 +45,6 @@ const Navbar = ({ setNavAside }) => {
             className="form-field"
             type="search"
             placeholder="Search..."
-            value={appliedSearchTerm}
             onChange={searchHandler}
           />
         </div>
@@ -79,11 +76,7 @@ const Navbar = ({ setNavAside }) => {
           className="form-field"
           type="search"
           placeholder="Search..."
-          value={appliedSearchTerm}
-          onChange={e => {
-            pathname !== "/explore" ? navigate("/explore") : null;
-            videoDispatch({ type: "APPLY_SEARCH_TERM", payload: e.target.value });
-          }}
+          onChange={searchHandler}
         />
       </div>
     </nav>
