@@ -28,7 +28,22 @@ export const getAllVideosHandler = function () {
  * This handler handles uploads a new video to the db.
  * send POST Request at /api/user/videos/
  * */
+export const getPagedVideosHandler = function (schema, request) {
+  const pageNum = Number(request.params.pageNum);
+  const videos = this.db.videos.slice(pageNum * 8, pageNum * 8 + 8);
 
+  try {
+    return new Response(200, {}, { videos });
+  } catch (error) {
+    return new Response(
+      500,
+      {},
+      {
+        error,
+      }
+    );
+  }
+};
 // TODO: postVideoHandler
 
 /**

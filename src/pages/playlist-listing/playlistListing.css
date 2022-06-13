@@ -20,7 +20,6 @@
   min-height: 12rem;
   max-width: 30rem;
   border: 2px solid var(--secondary-color);
-  cursor: pointer;
 }
 
 .form-card:active {
@@ -28,6 +27,7 @@
 }
 .add-new-playlist-container:hover {
   color: var(--primary-color);
+  cursor: pointer;
 }
 .playlist-form .flex-total-center {
   gap: var(--md-space);

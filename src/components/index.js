@@ -9,3 +9,4 @@ export { Input } from "./input/Input";
 export { PasswordInput } from "./input/PasswordInput";
 export { OverlayContainer } from "./overlay-container/OverlayContainer";
 export { Modal } from "./modal/Modal";
+export { Tooltip } from "./tooltip/Tooltip";

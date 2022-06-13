@@ -63,6 +63,12 @@ const VideoCard = ({ video }) => {
     };
   }, [showThreeDotMenu]);
 
+  const copyUrlTOClipboard = async () => {
+    await navigator.clipboard.writeText(`https://orion-play.netlify.app/explore/${_id}`);
+    toast.success("Link copied to clipboard");
+    setShowThreeDotMenu(false);
+  };
+
   return (
     <>
       <Modal showModal={showModal} setShowModal={setShowModal} video={video} />
@@ -106,7 +112,7 @@ const VideoCard = ({ video }) => {
                   <i className="text-center fas fa-folder-plus"></i>
                   <span className="text-sm">Save to playlist</span>
                 </li>
-                <li className="grid-30-70">
+                <li className="grid-30-70" onClick={copyUrlTOClipboard}>
                   <i className="text-center fas fa-share"></i>
                   <span className="text-sm">Share</span>
                 </li>

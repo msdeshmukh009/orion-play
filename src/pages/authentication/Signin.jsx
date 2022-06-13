@@ -14,7 +14,7 @@ const Signin = () => {
     password: "",
   });
 
-  const guestUser = { email: "adarshbalika@gmail.com", password: "adarshBalika123" };
+  const guestUser = { email: "jojo@gmail.com", password: "Jojo@123" };
 
   const {
     authState: { loading, error },

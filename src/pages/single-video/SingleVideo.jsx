@@ -5,7 +5,7 @@ import { useVideos } from "../../context";
 import { useNavigate } from "react-router-dom";
 import { embedLink, isPresentIn } from "../../utils";
 import { useLikes, useWatchLater, useWatchHistory, useAuth, useNotes } from "../../hooks";
-import { Loading, Modal } from "../../components";
+import { Loading, Modal, Tooltip } from "../../components";
 import toast from "react-hot-toast";
 import { NoteCard } from "./NoteCard";
 import { NoteEditor } from "./NoteEditor";
@@ -105,19 +105,25 @@ const SingleVideo = () => {
           <h3>{video?.title}</h3>
 
           <div className="video-cta">
-            <button className="video-cta-buttons" onClick={handleLike}>
-              <i className={`fas fa-thumbs-up ${isLiked ? "text-primary-color" : ""}`}></i>
-            </button>
+            <Tooltip tooltipText={isLiked ? "Dislike" : "Like"}>
+              <button className="video-cta-buttons" onClick={handleLike}>
+                <i className={`fas fa-thumbs-up ${isLiked ? "text-primary-color" : ""}`}></i>
+              </button>
+            </Tooltip>
 
-            <button className="video-cta-buttons" onClick={handleWatchLater}>
-              <i
-                className={`fas fa-clock ${isPresentInWatchLater ? "text-primary-color" : ""}`}
-              ></i>
-            </button>
+            <Tooltip tooltipText="Watchlater">
+              <button className="video-cta-buttons" onClick={handleWatchLater}>
+                <i
+                  className={`fas fa-clock ${isPresentInWatchLater ? "text-primary-color" : ""}`}
+                ></i>
+              </button>
+            </Tooltip>
 
-            <button className="video-cta-buttons" onClick={handleSaveToPlaylist}>
-              <i className="fas fa-folder-plus"></i>
-            </button>
+            <Tooltip tooltipText="Playlists">
+              <button className="video-cta-buttons" onClick={handleSaveToPlaylist}>
+                <i className="fas fa-folder-plus"></i>
+              </button>
+            </Tooltip>
           </div>
 
           <div className="creator-description flex-column">
