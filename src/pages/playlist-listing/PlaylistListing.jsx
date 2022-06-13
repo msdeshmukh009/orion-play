@@ -43,11 +43,11 @@ const PlaylistListing = () => {
                   />
                 </div>
                 <div className="flex-total-center">
-                  <button className="btn btn-primary" onClick={e => submitPlaylistHandler(e)}>
-                    Create
-                  </button>
                   <button className="btn btn-secondary" onClick={() => setIsCreating(false)}>
                     Discard
+                  </button>
+                  <button className="btn btn-primary" onClick={e => submitPlaylistHandler(e)}>
+                    Create
                   </button>
                 </div>
               </form>
